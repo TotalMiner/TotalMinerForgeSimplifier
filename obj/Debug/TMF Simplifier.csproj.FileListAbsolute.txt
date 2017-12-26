@@ -1,0 +1,9 @@
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\bin\Debug\TMF Simplifier.exe.config
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\bin\Debug\TMF Simplifier.exe
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\bin\Debug\TMF Simplifier.pdb
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\obj\Debug\TMF Simplifier.csprojResolveAssemblyReference.cache
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\obj\Debug\TMF_Simplifier.TMFS.resources
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\obj\Debug\TMF_Simplifier.Properties.Resources.resources
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\obj\Debug\TMF Simplifier.csproj.GenerateResource.Cache
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\obj\Debug\TMF Simplifier.exe
+c:\users\smart_000\documents\visual studio 2015\Projects\TMF Simplifier\TMF Simplifier\obj\Debug\TMF Simplifier.pdb
