@@ -24,7 +24,7 @@ namespace TMF_Simplifier
         public static TMFS Instance;
         public static int Category;
         public static List<int>[] Ids;
-        static readonly string TotalMinerMain = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/My Games/TotalMiner";
+        static readonly string TotalMinerMain = Path.Combine(new[] { Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "TotalMiner" });
         string Location;
         string status;
         string filename;
@@ -63,7 +63,7 @@ namespace TMF_Simplifier
             Category = 2;
             SevenZip.SevenZipExtractor.SetLibraryPath(
                 Path.Combine(
-                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),"x86"),
+                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),(Environment.Is64BitProcess ? "x64" : "x86")),
                 "7z.dll"));
         }
 
@@ -110,21 +110,21 @@ namespace TMF_Simplifier
             {
                 if (IsMod.Checked == true)
                 {
-                    Location = TotalMinerMain + "/Mods";
+                    Location = Path.Combine(TotalMinerMain,"Mods");
                     status = "ismod";
                     StatusLabel.Text = status;
 
                 }
                 else if (IsMap.Checked == true)
                 {
-                    Location = TotalMinerMain + "/Maps";
+                    Location = Path.Combine(TotalMinerMain, "Maps");
                     status = "ismap";
                     StatusLabel.Text = status;
 
                 }
                 else if (IsCom.Checked == true)
                 {
-                    Location = TotalMinerMain + "/Com";
+                    Location = Path.Combine(TotalMinerMain, "Com");
                     status = "iscom";
                     StatusLabel.Text = status;
 
@@ -163,20 +163,15 @@ namespace TMF_Simplifier
                 StatusLabel.Text = status;
                 using (var tmp = new SevenZipExtractor(zipPath))
                 {
-                    ProgressBar.Value = 0;
-                    ProgressBar.Maximum = tmp.ArchiveFileData.Count;
-                    for (int i = 0; i < tmp.ArchiveFileData.Count; i++)
-                    {
-                        tmp.ExtractFiles(Location, tmp.ArchiveFileData[i].Index);
-                        ProgressBar.Value = i;
-                    }
+                    Console.WriteLine(Location);
+                    tmp.ExtractArchive(Location);
                 }
                 status = "completed";
                 StatusLabel.Text = status;
 
                 if(WebRadioBTN.Checked)
                 {
-                    File.Delete(zipPath);
+                    //File.Delete(zipPath);
                 }
             }
         }
@@ -265,12 +260,21 @@ namespace TMF_Simplifier
             {
                 case 0:
                     Category = 3;
+                    IsMap.Checked = true;
+                    IsMod.Checked = false;
+                    IsCom.Checked = false;
                     break;
                 case 1:
                     Category = 2;
+                    IsMap.Checked = false;
+                    IsMod.Checked = true;
+                    IsCom.Checked = false;
                     break;
                 case 2:
                     Category = 5;
+                    IsMap.Checked = false;
+                    IsMod.Checked = false;
+                    IsCom.Checked = true;
                     break;
                 default:
                     Console.WriteLine("Something's broke");
