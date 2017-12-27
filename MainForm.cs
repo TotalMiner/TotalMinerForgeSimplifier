@@ -171,7 +171,7 @@ namespace TMF_Simplifier
 
                 if(WebRadioBTN.Checked)
                 {
-                    //File.Delete(zipPath);
+                    File.Delete(zipPath);
                 }
             }
         }
