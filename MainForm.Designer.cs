@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMFS));
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Test");
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,6 +49,14 @@
             this.FileRadioBTN = new System.Windows.Forms.RadioButton();
             this.WebRadioBTN = new System.Windows.Forms.RadioButton();
             this.TypegroupBox = new System.Windows.Forms.GroupBox();
+            this.DownloadsView = new System.Windows.Forms.ListView();
+            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Rating = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Views = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Downloads = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CategoryBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.TypegroupBox.SuspendLayout();
@@ -146,16 +155,16 @@
             // 
             // FiletextBox
             // 
-            this.FiletextBox.Location = new System.Drawing.Point(63, 211);
+            this.FiletextBox.Location = new System.Drawing.Point(322, 74);
             this.FiletextBox.Name = "FiletextBox";
-            this.FiletextBox.Size = new System.Drawing.Size(605, 20);
+            this.FiletextBox.Size = new System.Drawing.Size(200, 20);
             this.FiletextBox.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(63, 192);
+            this.label3.Location = new System.Drawing.Point(322, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 15);
             this.label3.TabIndex = 6;
@@ -164,7 +173,7 @@
             // FilePicker
             // 
             this.FilePicker.DefaultExt = "C:\\Users\\";
-            this.FilePicker.Filter = "\"Zip files (*.zip)|*.zip|(*.rar)|*.rar\"";
+            this.FilePicker.Filter = "Zip files (*.zip;*.rar;*.7z)|*.zip;*.rar;*.7z";
             this.FilePicker.SupportMultiDottedExtensions = true;
             this.FilePicker.Title = "Choose zip";
             // 
@@ -173,7 +182,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(671, 211);
+            this.button1.Location = new System.Drawing.Point(528, 73);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(61, 20);
             this.button1.TabIndex = 8;
@@ -188,7 +197,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F);
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.Location = new System.Drawing.Point(66, 286);
+            this.button2.Location = new System.Drawing.Point(325, 149);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(61, 22);
             this.button2.TabIndex = 9;
@@ -220,7 +229,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F);
-            this.label5.Location = new System.Drawing.Point(63, 234);
+            this.label5.Location = new System.Drawing.Point(322, 97);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(132, 15);
             this.label5.TabIndex = 13;
@@ -228,17 +237,17 @@
             // 
             // WebsitetextBox
             // 
-            this.WebsitetextBox.Location = new System.Drawing.Point(63, 253);
+            this.WebsitetextBox.Location = new System.Drawing.Point(322, 116);
             this.WebsitetextBox.Name = "WebsitetextBox";
             this.WebsitetextBox.ReadOnly = true;
-            this.WebsitetextBox.Size = new System.Drawing.Size(605, 20);
+            this.WebsitetextBox.Size = new System.Drawing.Size(200, 20);
             this.WebsitetextBox.TabIndex = 12;
             // 
             // FileRadioBTN
             // 
             this.FileRadioBTN.AutoSize = true;
             this.FileRadioBTN.Checked = true;
-            this.FileRadioBTN.Location = new System.Drawing.Point(43, 211);
+            this.FileRadioBTN.Location = new System.Drawing.Point(302, 74);
             this.FileRadioBTN.Name = "FileRadioBTN";
             this.FileRadioBTN.Size = new System.Drawing.Size(14, 13);
             this.FileRadioBTN.TabIndex = 14;
@@ -249,7 +258,7 @@
             // WebRadioBTN
             // 
             this.WebRadioBTN.AutoSize = true;
-            this.WebRadioBTN.Location = new System.Drawing.Point(43, 256);
+            this.WebRadioBTN.Location = new System.Drawing.Point(302, 119);
             this.WebRadioBTN.Name = "WebRadioBTN";
             this.WebRadioBTN.Size = new System.Drawing.Size(14, 13);
             this.WebRadioBTN.TabIndex = 15;
@@ -268,12 +277,80 @@
             this.TypegroupBox.TabStop = false;
             this.TypegroupBox.Text = "Type";
             // 
+            // DownloadsView
+            // 
+            this.DownloadsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Title,
+            this.Rating,
+            this.Views,
+            this.Downloads,
+            this.Size,
+            this.Author});
+            this.DownloadsView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem5});
+            this.DownloadsView.Location = new System.Drawing.Point(12, 190);
+            this.DownloadsView.Name = "DownloadsView";
+            this.DownloadsView.Size = new System.Drawing.Size(814, 305);
+            this.DownloadsView.TabIndex = 17;
+            this.DownloadsView.UseCompatibleStateImageBehavior = false;
+            this.DownloadsView.View = System.Windows.Forms.View.Details;
+            this.DownloadsView.SelectedIndexChanged += new System.EventHandler(this.DownloadsView_SelectedIndexChanged);
+            this.DownloadsView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DownloadsView_MouseDoubleClick);
+            // 
+            // Title
+            // 
+            this.Title.Text = "Title";
+            this.Title.Width = 32;
+            // 
+            // Rating
+            // 
+            this.Rating.Text = "Rating";
+            this.Rating.Width = 43;
+            // 
+            // Views
+            // 
+            this.Views.Text = "Views";
+            this.Views.Width = 40;
+            // 
+            // Downloads
+            // 
+            this.Downloads.Text = "Downloads";
+            this.Downloads.Width = 65;
+            // 
+            // Size
+            // 
+            this.Size.Text = "Size";
+            this.Size.Width = 32;
+            // 
+            // Author
+            // 
+            this.Author.Text = "Author";
+            this.Author.Width = 57;
+            // 
+            // CategoryBox
+            // 
+            this.CategoryBox.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
+            this.CategoryBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.CategoryBox.FormattingEnabled = true;
+            this.CategoryBox.Items.AddRange(new object[] {
+            "Worlds",
+            "Mods",
+            "Components"});
+            this.CategoryBox.Location = new System.Drawing.Point(709, 163);
+            this.CategoryBox.Name = "CategoryBox";
+            this.CategoryBox.Size = new System.Drawing.Size(117, 21);
+            this.CategoryBox.TabIndex = 18;
+            this.CategoryBox.SelectedIndexChanged += new System.EventHandler(this.CategoryBox_SelectedIndexChanged);
+            this.CategoryBox.SelectionChangeCommitted += new System.EventHandler(this.CategoryBox_SelectionChangeCommitted);
+            // 
             // TMFS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(838, 518);
+            this.Controls.Add(this.CategoryBox);
+            this.Controls.Add(this.DownloadsView);
             this.Controls.Add(this.TypegroupBox);
             this.Controls.Add(this.WebRadioBTN);
             this.Controls.Add(this.FileRadioBTN);
@@ -322,6 +399,14 @@
         private System.Windows.Forms.RadioButton FileRadioBTN;
         private System.Windows.Forms.RadioButton WebRadioBTN;
         private System.Windows.Forms.GroupBox TypegroupBox;
+        private System.Windows.Forms.ListView DownloadsView;
+        private System.Windows.Forms.ColumnHeader Title;
+        private System.Windows.Forms.ColumnHeader Rating;
+        private System.Windows.Forms.ColumnHeader Views;
+        private System.Windows.Forms.ColumnHeader Downloads;
+        private System.Windows.Forms.ColumnHeader Size;
+        private System.Windows.Forms.ColumnHeader Author;
+        private System.Windows.Forms.ComboBox CategoryBox;
     }
 }
 

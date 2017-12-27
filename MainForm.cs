@@ -10,11 +10,20 @@ using System.Windows.Forms;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using ScrapySharp.Network;
+using HtmlAgilityPack;
+using ScrapySharp.Extensions;
+using static System.Windows.Forms.ListViewItem;
+using SevenZip;
+using System.Reflection;
 
 namespace TMF_Simplifier
 {
     public partial class TMFS : Form
     {
+        public static TMFS Instance;
+        public static int Category;
+        public static List<int>[] Ids;
         static readonly string TotalMinerMain = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/My Games/TotalMiner";
         string Location;
         string status;
@@ -42,7 +51,20 @@ namespace TMF_Simplifier
                 status = "Ready";
                 StatusLabel.Text = status;
             }
-            
+            Instance = this;
+
+            DownloadsView.Items.Clear();
+            Ids = new List<int>[6];
+            for(int i = 0; i < 6; i++)
+            {
+                Ids[i] = new List<int>();
+            }
+            CategoryBox.SelectedIndex = CategoryBox.Items.IndexOf("Mods");
+            Category = 2;
+            SevenZip.SevenZipExtractor.SetLibraryPath(
+                Path.Combine(
+                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),"x86"),
+                "7z.dll"));
         }
 
         #region lastpoint
@@ -79,28 +101,13 @@ namespace TMF_Simplifier
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (FiletextBox.Text == null || !File.Exists(FiletextBox.Text))
+            if (FileRadioBTN.Checked && (FiletextBox.Text == null || !File.Exists(FiletextBox.Text)))
             {
                 status = "File not found.";
                 StatusLabel.Text = status;
             }
             else
             {
-                string zipPath;
-                if (FileRadioBTN.Checked == true)
-                {
-
-                    zipPath = FiletextBox.Text;
-                }
-                else
-                {
-                    zipPath = $"";
-                    Client.DownloadFile(WebsitetextBox.Text, Location);
-                }
-                status = "Starting";
-                StatusLabel.Text = status;
-                ProgressBar.Value = 1;
-
                 if (IsMod.Checked == true)
                 {
                     Location = TotalMinerMain + "/Mods";
@@ -122,6 +129,21 @@ namespace TMF_Simplifier
                     StatusLabel.Text = status;
 
                 }
+                string zipPath;
+                if (FileRadioBTN.Checked == true)
+                {
+
+                    zipPath = FiletextBox.Text;
+                }
+                else
+                {
+                    zipPath = Path.Combine(Location, "TempDownload");
+                    Client.DownloadFile(WebsitetextBox.Text, zipPath);
+                    Console.WriteLine(WebsitetextBox.Text + " -> " + zipPath);
+                }
+                status = "Starting";
+                StatusLabel.Text = status;
+                ProgressBar.Value = 1;
                 ProgressBar.Value = 2;
                 status = "Checking if directory exists";
 
@@ -137,11 +159,25 @@ namespace TMF_Simplifier
                 }
 
                 status = "unzipping";
-                StatusLabel.Text = status;
-                ZipFile.ExtractToDirectory(zipPath, Location);
                 ProgressBar.Value = 5;
+                StatusLabel.Text = status;
+                using (var tmp = new SevenZipExtractor(zipPath))
+                {
+                    ProgressBar.Value = 0;
+                    ProgressBar.Maximum = tmp.ArchiveFileData.Count;
+                    for (int i = 0; i < tmp.ArchiveFileData.Count; i++)
+                    {
+                        tmp.ExtractFiles(Location, tmp.ArchiveFileData[i].Index);
+                        ProgressBar.Value = i;
+                    }
+                }
                 status = "completed";
                 StatusLabel.Text = status;
+
+                if(WebRadioBTN.Checked)
+                {
+                    File.Delete(zipPath);
+                }
             }
         }
 
@@ -172,6 +208,75 @@ namespace TMF_Simplifier
                 FiletextBox.ReadOnly = true;
                 WebsitetextBox.ReadOnly = false;
             }
+        }
+
+        private void LoadContent()
+        {
+            DownloadsView.Items.Clear();
+            Task.Factory.StartNew(() => Scraper.Scrape(Category,0));
+        }
+
+        delegate void AddRowCallback(ListViewItem row);
+
+        public void AddRow(ListViewItem row)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.DownloadsView.InvokeRequired)
+            {
+                AddRowCallback d = new AddRowCallback(AddRow);
+                this.Invoke(d, new object[] { row });
+            }
+            else
+            {
+                this.DownloadsView.Items.Add(row);
+                foreach(ColumnHeader header in DownloadsView.Columns)
+                {
+                    header.Width = -2;
+                }
+            }
+        }
+
+        private void DownloadsView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DownloadsView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][DownloadsView.SelectedItems[0].Index];
+            Console.WriteLine("Downloading " + url);
+            FileRadioBTN.Checked = false;
+            WebRadioBTN.Checked = true;
+            WebsitetextBox.Text = url;
+            button2.PerformClick();
+        }
+
+        private void CategoryBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CategoryBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(CategoryBox.SelectedIndex);
+            switch (CategoryBox.SelectedIndex)
+            {
+                case 0:
+                    Category = 3;
+                    break;
+                case 1:
+                    Category = 2;
+                    break;
+                case 2:
+                    Category = 5;
+                    break;
+                default:
+                    Console.WriteLine("Something's broke");
+                    break;
+            }
+            LoadContent();
         }
     }
 }
