@@ -25,14 +25,14 @@ namespace TMF_Simplifier
         public static int Category;
         public static List<int>[] Ids;
         static readonly string TotalMinerMain = Path.Combine(new[] { Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "TotalMiner" });
-        string Location;
+        new string Location;
         string status;
         string filename;
 
         Point lastPoint;
 
         WebClient Client = new WebClient();
-
+        HelpPage Help;
         public TMFS()
         {
             InitializeComponent();
@@ -85,12 +85,12 @@ namespace TMF_Simplifier
 
         private void label1_MouseHover(object sender, EventArgs e)
         {
-            label1.BackColor = Color.IndianRed;
+            ExitBTN.BackColor = Color.DarkOrange;
         }
 
         private void label1_MouseLeave(object sender, EventArgs e)
         {
-            label1.BackColor = Color.Transparent;
+            ExitBTN.BackColor = Color.Transparent;
 
         }
 
@@ -245,7 +245,7 @@ namespace TMF_Simplifier
             FileRadioBTN.Checked = false;
             WebRadioBTN.Checked = true;
             WebsitetextBox.Text = url;
-            button2.PerformClick();
+            SimplifyBTN.PerformClick();
         }
 
         private void CategoryBox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -281,6 +281,39 @@ namespace TMF_Simplifier
                     break;
             }
             LoadContent();
+        }
+
+        private void minimize_Click_1(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void Minimize_MouseHover(object sender, EventArgs e)
+        {
+            Minimize.BackColor = Color.Orange;
+        }
+
+        private void Minimize_MouseLeave(object sender, EventArgs e)
+        {
+            Minimize.BackColor = Color.Transparent;
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+            Help = new HelpPage();
+            Help.Show();
+        }
+
+        private void label1_MouseHover_1(object sender, EventArgs e)
+        {
+            label1.BackColor = Color.LightSteelBlue;
+        }
+
+        private void label1_MouseLeave_1(object sender, EventArgs e)
+        {
+            label1.BackColor = Color.Transparent;
+
         }
     }
 }
