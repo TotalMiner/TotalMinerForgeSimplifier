@@ -1,6 +1,5 @@
 # TotalMinerForgeSimplifier
-please read License
-Don't use for malicous intent
+Please read the license prior to modifying or contributing to this project.
 
-to use open EXE file, choose the type of install, select the file that you would like to install, and press the simplify button.
-If done properly the bar would have turned green and said completed.
+To use this tool simply: run the EXE, choose the type of game modification, browse for the file you would like to install and press the simplify button.
+If done properly the progress bar should have turned green and say "Completed".
