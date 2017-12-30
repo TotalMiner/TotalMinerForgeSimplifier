@@ -7,6 +7,7 @@ using ScrapySharp.Network;
 using HtmlAgilityPack;
 using ScrapySharp.Extensions;
 using System.Windows.Forms;
+using System.Web;
 
 namespace TMF_Simplifier
 {
@@ -37,7 +38,7 @@ namespace TMF_Simplifier
                             }
                             else
                             {
-                                cells.Add(cell.InnerText);
+                                cells.Add(HttpUtility.HtmlDecode(cell.InnerText));
                             }
 
                             if (celli == 0)
