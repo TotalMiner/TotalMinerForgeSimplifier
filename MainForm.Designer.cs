@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMFS));
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Downloads");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Downloads");
             this.ExitBTN = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.HelpBTN = new System.Windows.Forms.Label();
             this.Minimize = new System.Windows.Forms.Label();
             this.LogoTXT = new System.Windows.Forms.Label();
             this.LogoIMG = new System.Windows.Forms.PictureBox();
@@ -50,11 +50,17 @@
             this.Downloads = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.CategoryBox = new System.Windows.Forms.ComboBox();
             this.ReloadBTN = new System.Windows.Forms.PictureBox();
+            this.ModTab = new System.Windows.Forms.Label();
+            this.MapTab = new System.Windows.Forms.Label();
+            this.ComTab = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.SettingsBTN = new System.Windows.Forms.Label();
+            this.ReleaseLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ExitBTN
@@ -78,7 +84,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(67)))), ((int)(((byte)(85)))));
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.SettingsBTN);
+            this.panel1.Controls.Add(this.HelpBTN);
             this.panel1.Controls.Add(this.Minimize);
             this.panel1.Controls.Add(this.LogoTXT);
             this.panel1.Controls.Add(this.LogoIMG);
@@ -91,22 +98,22 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
             // 
-            // label1
+            // HelpBTN
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(739, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
-            this.label1.Size = new System.Drawing.Size(41, 21);
-            this.label1.TabIndex = 20;
-            this.label1.Text = " Help ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
-            this.label1.MouseLeave += new System.EventHandler(this.label1_MouseLeave_1);
-            this.label1.MouseHover += new System.EventHandler(this.label1_MouseHover_1);
+            this.HelpBTN.AutoSize = true;
+            this.HelpBTN.BackColor = System.Drawing.Color.Transparent;
+            this.HelpBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.HelpBTN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.HelpBTN.Location = new System.Drawing.Point(739, 0);
+            this.HelpBTN.Name = "HelpBTN";
+            this.HelpBTN.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
+            this.HelpBTN.Size = new System.Drawing.Size(41, 21);
+            this.HelpBTN.TabIndex = 20;
+            this.HelpBTN.Text = " Help ";
+            this.HelpBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.HelpBTN.Click += new System.EventHandler(this.label1_Click_1);
+            this.HelpBTN.MouseLeave += new System.EventHandler(this.label1_MouseLeave_1);
+            this.HelpBTN.MouseHover += new System.EventHandler(this.label1_MouseHover_1);
             // 
             // Minimize
             // 
@@ -151,18 +158,20 @@
             // 
             // LocationTextbox
             // 
-            this.LocationTextbox.Location = new System.Drawing.Point(28, 130);
+            this.LocationTextbox.AllowDrop = true;
+            this.LocationTextbox.Location = new System.Drawing.Point(15, 53);
             this.LocationTextbox.Name = "LocationTextbox";
             this.LocationTextbox.Size = new System.Drawing.Size(665, 20);
             this.LocationTextbox.TabIndex = 5;
             this.LocationTextbox.TextChanged += new System.EventHandler(this.FiletextBox_TextChanged);
+            this.LocationTextbox.DragDrop += new System.Windows.Forms.DragEventHandler(this.LocationTextbox_DragDrop);
             // 
             // LocationLabel
             // 
             this.LocationLabel.AutoSize = true;
             this.LocationLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LocationLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.LocationLabel.Location = new System.Drawing.Point(25, 112);
+            this.LocationLabel.Location = new System.Drawing.Point(12, 35);
             this.LocationLabel.Name = "LocationLabel";
             this.LocationLabel.Size = new System.Drawing.Size(96, 15);
             this.LocationLabel.TabIndex = 6;
@@ -177,11 +186,11 @@
             // 
             // BrowseBTN
             // 
-            this.BrowseBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(154)))), ((int)(((byte)(180)))));
+            this.BrowseBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(124)))), ((int)(((byte)(150)))));
             this.BrowseBTN.FlatAppearance.BorderSize = 0;
             this.BrowseBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BrowseBTN.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BrowseBTN.Location = new System.Drawing.Point(692, 130);
+            this.BrowseBTN.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.BrowseBTN.Location = new System.Drawing.Point(682, 53);
             this.BrowseBTN.Name = "BrowseBTN";
             this.BrowseBTN.Size = new System.Drawing.Size(59, 20);
             this.BrowseBTN.TabIndex = 8;
@@ -191,12 +200,12 @@
             // 
             // SimplifyBTN
             // 
-            this.SimplifyBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(154)))), ((int)(((byte)(180)))));
+            this.SimplifyBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(124)))), ((int)(((byte)(150)))));
             this.SimplifyBTN.FlatAppearance.BorderSize = 0;
             this.SimplifyBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SimplifyBTN.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F);
-            this.SimplifyBTN.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SimplifyBTN.Location = new System.Drawing.Point(28, 159);
+            this.SimplifyBTN.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.SimplifyBTN.Location = new System.Drawing.Point(15, 79);
             this.SimplifyBTN.Name = "SimplifyBTN";
             this.SimplifyBTN.Size = new System.Drawing.Size(61, 22);
             this.SimplifyBTN.TabIndex = 9;
@@ -228,7 +237,10 @@
             // 
             // DownloadsView
             // 
+            this.DownloadsView.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.DownloadsView.AllowColumnReorder = true;
             this.DownloadsView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(108)))), ((int)(((byte)(133)))));
+            this.DownloadsView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DownloadsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Title,
             this.Rating,
@@ -238,12 +250,15 @@
             this.Author});
             this.DownloadsView.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadsView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(253)))));
+            this.DownloadsView.FullRowSelect = true;
+            this.DownloadsView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.DownloadsView.HoverSelection = true;
+            listViewItem1.StateImageIndex = 0;
             this.DownloadsView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem8});
-            this.DownloadsView.Location = new System.Drawing.Point(12, 203);
+            listViewItem1});
+            this.DownloadsView.Location = new System.Drawing.Point(12, 147);
             this.DownloadsView.Name = "DownloadsView";
-            this.DownloadsView.Size = new System.Drawing.Size(814, 292);
+            this.DownloadsView.Size = new System.Drawing.Size(814, 349);
             this.DownloadsView.TabIndex = 17;
             this.DownloadsView.UseCompatibleStateImageBehavior = false;
             this.DownloadsView.View = System.Windows.Forms.View.Details;
@@ -278,56 +293,124 @@
             // Author
             // 
             this.Author.Text = "Author";
-            this.Author.Width = 286;
-            // 
-            // CategoryBox
-            // 
-            this.CategoryBox.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
-            this.CategoryBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(108)))), ((int)(((byte)(133)))));
-            this.CategoryBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CategoryBox.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F);
-            this.CategoryBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.CategoryBox.FormattingEnabled = true;
-            this.CategoryBox.Items.AddRange(new object[] {
-            "Worlds",
-            "Mods",
-            "Components"});
-            this.CategoryBox.Location = new System.Drawing.Point(28, 63);
-            this.CategoryBox.Name = "CategoryBox";
-            this.CategoryBox.Size = new System.Drawing.Size(148, 21);
-            this.CategoryBox.TabIndex = 18;
-            this.CategoryBox.SelectedIndexChanged += new System.EventHandler(this.CategoryBox_SelectedIndexChanged);
-            this.CategoryBox.SelectionChangeCommitted += new System.EventHandler(this.CategoryBox_SelectionChangeCommitted);
+            this.Author.Width = 292;
             // 
             // ReloadBTN
             // 
             this.ReloadBTN.BackColor = System.Drawing.Color.Transparent;
             this.ReloadBTN.Image = ((System.Drawing.Image)(resources.GetObject("ReloadBTN.Image")));
-            this.ReloadBTN.Location = new System.Drawing.Point(182, 59);
+            this.ReloadBTN.Location = new System.Drawing.Point(180, 119);
             this.ReloadBTN.Name = "ReloadBTN";
             this.ReloadBTN.Padding = new System.Windows.Forms.Padding(3);
-            this.ReloadBTN.Size = new System.Drawing.Size(28, 28);
+            this.ReloadBTN.Size = new System.Drawing.Size(27, 27);
             this.ReloadBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ReloadBTN.TabIndex = 20;
             this.ReloadBTN.TabStop = false;
             this.ReloadBTN.Click += new System.EventHandler(this.Reload_Click);
             // 
+            // ModTab
+            // 
+            this.ModTab.AutoSize = true;
+            this.ModTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(144)))), ((int)(((byte)(180)))));
+            this.ModTab.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.ModTab.Location = new System.Drawing.Point(13, 123);
+            this.ModTab.Name = "ModTab";
+            this.ModTab.Padding = new System.Windows.Forms.Padding(4);
+            this.ModTab.Size = new System.Drawing.Size(41, 21);
+            this.ModTab.TabIndex = 21;
+            this.ModTab.Tag = "2";
+            this.ModTab.Text = "Mods";
+            this.ModTab.Click += new System.EventHandler(this.ModTab_Click);
+            // 
+            // MapTab
+            // 
+            this.MapTab.AutoSize = true;
+            this.MapTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(124)))), ((int)(((byte)(150)))));
+            this.MapTab.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.MapTab.Location = new System.Drawing.Point(55, 123);
+            this.MapTab.Name = "MapTab";
+            this.MapTab.Padding = new System.Windows.Forms.Padding(4);
+            this.MapTab.Size = new System.Drawing.Size(48, 21);
+            this.MapTab.TabIndex = 22;
+            this.MapTab.Tag = "3";
+            this.MapTab.Text = "Worlds";
+            this.MapTab.Click += new System.EventHandler(this.MapTab_Click);
+            // 
+            // ComTab
+            // 
+            this.ComTab.AutoSize = true;
+            this.ComTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(124)))), ((int)(((byte)(150)))));
+            this.ComTab.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.ComTab.Location = new System.Drawing.Point(104, 123);
+            this.ComTab.Name = "ComTab";
+            this.ComTab.Padding = new System.Windows.Forms.Padding(4);
+            this.ComTab.Size = new System.Drawing.Size(74, 21);
+            this.ComTab.TabIndex = 23;
+            this.ComTab.Tag = "5";
+            this.ComTab.Text = "Components";
+            this.ComTab.Click += new System.EventHandler(this.ComTab_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(209, 119);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(3);
+            this.pictureBox1.Size = new System.Drawing.Size(27, 27);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.Install_Click);
+            // 
+            // SettingsBTN
+            // 
+            this.SettingsBTN.AutoSize = true;
+            this.SettingsBTN.BackColor = System.Drawing.Color.Transparent;
+            this.SettingsBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.SettingsBTN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SettingsBTN.Location = new System.Drawing.Point(680, 0);
+            this.SettingsBTN.Name = "SettingsBTN";
+            this.SettingsBTN.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
+            this.SettingsBTN.Size = new System.Drawing.Size(59, 21);
+            this.SettingsBTN.TabIndex = 25;
+            this.SettingsBTN.Text = " Settings ";
+            this.SettingsBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.SettingsBTN.Visible = false;
+            // 
+            // ReleaseLabel
+            // 
+            this.ReleaseLabel.AutoSize = true;
+            this.ReleaseLabel.ForeColor = System.Drawing.Color.Cornsilk;
+            this.ReleaseLabel.Location = new System.Drawing.Point(739, 131);
+            this.ReleaseLabel.Name = "ReleaseLabel";
+            this.ReleaseLabel.Size = new System.Drawing.Size(91, 13);
+            this.ReleaseLabel.TabIndex = 25;
+            this.ReleaseLabel.Text = "Release 30.12.17";
+            // 
             // TMFS
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(89)))));
             this.ClientSize = new System.Drawing.Size(838, 518);
+            this.Controls.Add(this.ReleaseLabel);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ComTab);
+            this.Controls.Add(this.MapTab);
+            this.Controls.Add(this.ModTab);
             this.Controls.Add(this.SimplifyBTN);
             this.Controls.Add(this.LocationTextbox);
             this.Controls.Add(this.LocationLabel);
             this.Controls.Add(this.ReloadBTN);
             this.Controls.Add(this.BrowseBTN);
-            this.Controls.Add(this.CategoryBox);
             this.Controls.Add(this.DownloadsView);
             this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.panel1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TMFS";
@@ -337,6 +420,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,10 +446,15 @@
         private System.Windows.Forms.ColumnHeader Downloads;
         private new System.Windows.Forms.ColumnHeader Size;
         private System.Windows.Forms.ColumnHeader Author;
-        private System.Windows.Forms.ComboBox CategoryBox;
         private System.Windows.Forms.Label Minimize;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label HelpBTN;
         private System.Windows.Forms.PictureBox ReloadBTN;
+        private System.Windows.Forms.Label ModTab;
+        private System.Windows.Forms.Label MapTab;
+        private System.Windows.Forms.Label ComTab;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label SettingsBTN;
+        private System.Windows.Forms.Label ReleaseLabel;
     }
 }
 

@@ -30,6 +30,10 @@ namespace TMF_Simplifier
         string filename;
         bool isLocal;
 
+        Color ButtonActiveTheme = ColorTranslator.FromHtml("#7B90B4");
+        Color ButtonHighlightTheme = ColorTranslator.FromHtml("#7A718B");
+        Color ButtonTheme = ColorTranslator.FromHtml("#857C96");
+
         Point lastPoint;
 
         WebClient Client = new WebClient();
@@ -60,12 +64,12 @@ namespace TMF_Simplifier
             {
                 Ids[i] = new List<int>();
             }
-            CategoryBox.SelectedIndex = CategoryBox.Items.IndexOf("Mods");
             Category = 2;
             SevenZip.SevenZipExtractor.SetLibraryPath(
                 Path.Combine(
                 Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),(Environment.Is64BitProcess ? "x64" : "x86")),
                 "7z.dll"));
+            LoadContent();
         }
 
         #region lastpoint
@@ -216,36 +220,6 @@ namespace TMF_Simplifier
 
         }
 
-        private void CategoryBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine(CategoryBox.SelectedIndex);
-            switch (CategoryBox.SelectedIndex)
-            {
-                case 0:
-                    Category = 3;
-                    Location = Path.Combine(TotalMinerMain, "Maps");
-                    status = "ismap";
-                    StatusLabel.Text = status;
-                    break;
-                case 1:
-                    Category = 2;
-                    Location = Path.Combine(TotalMinerMain, "Mods");
-                    status = "ismod";
-                    StatusLabel.Text = status;
-                    break;
-                case 2:
-                    Category = 5;
-                    Location = Path.Combine(TotalMinerMain, "Com");
-                    status = "iscom";
-                    StatusLabel.Text = status;
-                    break;
-                default:
-                    Console.WriteLine("Something's broke");
-                    break;
-            }
-            LoadContent();
-        }
-
         private void minimize_Click_1(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
@@ -270,12 +244,12 @@ namespace TMF_Simplifier
 
         private void label1_MouseHover_1(object sender, EventArgs e)
         {
-            label1.BackColor = Color.LightSteelBlue;
+            HelpBTN.BackColor = Color.LightSteelBlue;
         }
 
         private void label1_MouseLeave_1(object sender, EventArgs e)
         {
-            label1.BackColor = Color.Transparent;
+            HelpBTN.BackColor = Color.Transparent;
 
         }
 
@@ -306,6 +280,59 @@ namespace TMF_Simplifier
             {
                 LocationLabel.Text = "Zip location (none)";
             }
+        }
+
+        private void Install_Click(object sender, EventArgs e)
+        {
+            string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][DownloadsView.SelectedItems[0].Index];
+            Console.WriteLine("Downloading " + url);
+            LocationTextbox.Text = url;
+            SimplifyBTN.PerformClick();
+        }
+
+        private void LocationTextbox_DragDrop(object sender, DragEventArgs e)
+        {
+            LocationTextbox.Text = e.Data.GetData(DataFormats.FileDrop).ToString();
+        }
+
+        private void ModTab_Click(object sender, EventArgs e)
+        {
+            Category = 2;
+            Location = Path.Combine(TotalMinerMain, "Mods");
+            status = "ismod";
+            StatusLabel.Text = status;
+            LoadContent();
+
+            ModTab.BackColor = ButtonActiveTheme;
+            MapTab.BackColor = ButtonTheme;
+            ComTab.BackColor = ButtonTheme;
+
+        }
+
+        private void MapTab_Click(object sender, EventArgs e)
+        {
+            Category = 3;
+            Location = Path.Combine(TotalMinerMain, "Maps");
+            status = "ismap";
+            StatusLabel.Text = status;
+            LoadContent();
+
+            ModTab.BackColor = ButtonTheme;
+            MapTab.BackColor = ButtonActiveTheme;
+            ComTab.BackColor = ButtonTheme;
+        }
+
+        private void ComTab_Click(object sender, EventArgs e)
+        {
+            Category = 5;
+            Location = Path.Combine(TotalMinerMain, "Com");
+            status = "iscom";
+            StatusLabel.Text = status;
+            LoadContent();
+
+            ModTab.BackColor = ButtonTheme;
+            MapTab.BackColor = ButtonTheme;
+            ComTab.BackColor = ButtonActiveTheme;
         }
     }
 }

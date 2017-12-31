@@ -53,7 +53,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(16, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(351, 68);
+            this.label2.Size = new System.Drawing.Size(370, 85);
             this.label2.TabIndex = 1;
             this.label2.Text = resources.GetString("label2.Text");
             // 
@@ -62,7 +62,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("MS Outlook", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(13, 117);
+            this.label3.Location = new System.Drawing.Point(13, 124);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 19);
             this.label3.TabIndex = 2;
@@ -73,11 +73,13 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(16, 138);
+            this.label4.Location = new System.Drawing.Point(16, 145);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(322, 85);
+            this.label4.Size = new System.Drawing.Size(356, 68);
             this.label4.TabIndex = 3;
-            this.label4.Text = resources.GetString("label4.Text");
+            this.label4.Text = "Step 1: Use the tab to find which type of item you would\r\n             like to in" +
+    "stall.\r\nStep 2: Select the item.\r\nStep 3: Press install button or double click i" +
+    "tem.";
             // 
             // HelpPage
             // 

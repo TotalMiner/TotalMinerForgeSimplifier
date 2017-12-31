@@ -118,17 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label2.Text" xml:space="preserve">
-    <value>Step 1: Find the location of the file you want to unzip
-Step 2: In the "Type" group selection chooses the type
-             of install, between Map, Component, and mod
-Step 3: Click the "Simplify" button.</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Step 1: In the dropdown selection choose the item
-             type you are looking for between Worlds,
-             Components, and mods
-Step 2: Find the item you want to install from the
-             preloaded list and double click to install
-</value>
+    <value>Step 1: Enter the location of the item you would like to
+             install.
+Step 2: Ensure the selected tab matches the item you are
+             ready to install.
+Step 3: Press the install icon.</value>
   </data>
 </root>
