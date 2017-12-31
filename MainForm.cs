@@ -28,6 +28,7 @@ namespace TMF_Simplifier
         new string Location;
         string status;
         string filename;
+        bool isLocal;
 
         Point lastPoint;
 
@@ -101,45 +102,24 @@ namespace TMF_Simplifier
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (FileRadioBTN.Checked && (FiletextBox.Text == null || !File.Exists(FiletextBox.Text)))
+            if (isLocal == true && (LocationTextbox.Text == null || !File.Exists(LocationTextbox.Text)))
             {
                 status = "File not found.";
                 StatusLabel.Text = status;
             }
             else
             {
-                if (IsMod.Checked == true)
-                {
-                    Location = Path.Combine(TotalMinerMain,"Mods");
-                    status = "ismod";
-                    StatusLabel.Text = status;
-
-                }
-                else if (IsMap.Checked == true)
-                {
-                    Location = Path.Combine(TotalMinerMain, "Maps");
-                    status = "ismap";
-                    StatusLabel.Text = status;
-
-                }
-                else if (IsCom.Checked == true)
-                {
-                    Location = Path.Combine(TotalMinerMain, "Com");
-                    status = "iscom";
-                    StatusLabel.Text = status;
-
-                }
                 string zipPath;
-                if (FileRadioBTN.Checked == true)
+                if (isLocal == true)
                 {
 
-                    zipPath = FiletextBox.Text;
+                    zipPath = LocationTextbox.Text;
                 }
                 else
                 {
                     zipPath = Path.Combine(Location, "TempDownload");
-                    Client.DownloadFile(WebsitetextBox.Text, zipPath);
-                    Console.WriteLine(WebsitetextBox.Text + " -> " + zipPath);
+                    Client.DownloadFile(LocationTextbox.Text, zipPath);
+                    Console.WriteLine(LocationTextbox.Text + " -> " + zipPath);
                 }
                 status = "Starting";
                 StatusLabel.Text = status;
@@ -169,7 +149,7 @@ namespace TMF_Simplifier
                 status = "completed";
                 StatusLabel.Text = status;
 
-                if(WebRadioBTN.Checked)
+                if(isLocal == false)
                 {
                     File.Delete(zipPath);
                 }
@@ -185,23 +165,8 @@ namespace TMF_Simplifier
         {
             if (FilePicker.ShowDialog(this) == DialogResult.OK)
             {
-                FiletextBox.Text = FilePicker.InitialDirectory + FilePicker.FileName;
+                LocationTextbox.Text = FilePicker.InitialDirectory + FilePicker.FileName;
                 filename = FilePicker.FileName;
-            }
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (FileRadioBTN.Checked == true)
-            {
-                FiletextBox.ReadOnly = false;
-                WebsitetextBox.ReadOnly = true;
-
-            }
-            else
-            {
-                FiletextBox.ReadOnly = true;
-                WebsitetextBox.ReadOnly = false;
             }
         }
 
@@ -242,9 +207,7 @@ namespace TMF_Simplifier
         {
             string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][DownloadsView.SelectedItems[0].Index];
             Console.WriteLine("Downloading " + url);
-            FileRadioBTN.Checked = false;
-            WebRadioBTN.Checked = true;
-            WebsitetextBox.Text = url;
+            LocationTextbox.Text = url;
             SimplifyBTN.PerformClick();
         }
 
@@ -260,21 +223,21 @@ namespace TMF_Simplifier
             {
                 case 0:
                     Category = 3;
-                    IsMap.Checked = true;
-                    IsMod.Checked = false;
-                    IsCom.Checked = false;
+                    Location = Path.Combine(TotalMinerMain, "Maps");
+                    status = "ismap";
+                    StatusLabel.Text = status;
                     break;
                 case 1:
                     Category = 2;
-                    IsMap.Checked = false;
-                    IsMod.Checked = true;
-                    IsCom.Checked = false;
+                    Location = Path.Combine(TotalMinerMain, "Mods");
+                    status = "ismod";
+                    StatusLabel.Text = status;
                     break;
                 case 2:
                     Category = 5;
-                    IsMap.Checked = false;
-                    IsMod.Checked = false;
-                    IsCom.Checked = true;
+                    Location = Path.Combine(TotalMinerMain, "Com");
+                    status = "iscom";
+                    StatusLabel.Text = status;
                     break;
                 default:
                     Console.WriteLine("Something's broke");
@@ -314,6 +277,35 @@ namespace TMF_Simplifier
         {
             label1.BackColor = Color.Transparent;
 
+        }
+
+        private void Reload_Click(object sender, EventArgs e)
+        {
+            LoadContent();
+        }
+
+        private void FiletextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (LocationTextbox.Text.StartsWith("http"))
+            {
+                LocationLabel.Text = "Zip location (Online)";
+                isLocal = false;
+            }
+            else if (File.Exists(LocationTextbox.Text))
+            {
+                LocationLabel.Text = "Zip location (Local)";
+                isLocal = true;
+
+            }
+            else if (LocationLabel.Text != "" || LocationLabel.Text != null)
+            {
+                LocationLabel.Text = "Zip location (Not Found)";
+
+            }
+            else
+            {
+                LocationLabel.Text = "Zip location (none)";
+            }
         }
     }
 }

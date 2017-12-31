@@ -29,27 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMFS));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Downloads");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Downloads");
             this.ExitBTN = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.Minimize = new System.Windows.Forms.Label();
             this.LogoTXT = new System.Windows.Forms.Label();
             this.LogoIMG = new System.Windows.Forms.PictureBox();
-            this.IsMod = new System.Windows.Forms.RadioButton();
-            this.IsMap = new System.Windows.Forms.RadioButton();
-            this.IsCom = new System.Windows.Forms.RadioButton();
-            this.FiletextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.LocationTextbox = new System.Windows.Forms.TextBox();
+            this.LocationLabel = new System.Windows.Forms.Label();
             this.FilePicker = new System.Windows.Forms.OpenFileDialog();
             this.BrowseBTN = new System.Windows.Forms.Button();
             this.SimplifyBTN = new System.Windows.Forms.Button();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.StatusLabel = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.WebsitetextBox = new System.Windows.Forms.TextBox();
-            this.FileRadioBTN = new System.Windows.Forms.RadioButton();
-            this.WebRadioBTN = new System.Windows.Forms.RadioButton();
-            this.TypegroupBox = new System.Windows.Forms.GroupBox();
             this.DownloadsView = new System.Windows.Forms.ListView();
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Rating = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,12 +51,10 @@
             this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CategoryBox = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ReloadBTN = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).BeginInit();
-            this.TypegroupBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).BeginInit();
             this.SuspendLayout();
             // 
             // ExitBTN
@@ -99,6 +90,23 @@
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(739, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
+            this.label1.Size = new System.Drawing.Size(41, 21);
+            this.label1.TabIndex = 20;
+            this.label1.Text = " Help ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            this.label1.MouseLeave += new System.EventHandler(this.label1_MouseLeave_1);
+            this.label1.MouseHover += new System.EventHandler(this.label1_MouseHover_1);
             // 
             // Minimize
             // 
@@ -141,61 +149,24 @@
             this.LogoIMG.TabIndex = 1;
             this.LogoIMG.TabStop = false;
             // 
-            // IsMod
+            // LocationTextbox
             // 
-            this.IsMod.AutoSize = true;
-            this.IsMod.Checked = true;
-            this.IsMod.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F);
-            this.IsMod.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.IsMod.Location = new System.Drawing.Point(6, 18);
-            this.IsMod.Name = "IsMod";
-            this.IsMod.Size = new System.Drawing.Size(48, 19);
-            this.IsMod.TabIndex = 2;
-            this.IsMod.TabStop = true;
-            this.IsMod.Text = "Mod";
-            this.IsMod.UseVisualStyleBackColor = true;
+            this.LocationTextbox.Location = new System.Drawing.Point(28, 130);
+            this.LocationTextbox.Name = "LocationTextbox";
+            this.LocationTextbox.Size = new System.Drawing.Size(665, 20);
+            this.LocationTextbox.TabIndex = 5;
+            this.LocationTextbox.TextChanged += new System.EventHandler(this.FiletextBox_TextChanged);
             // 
-            // IsMap
+            // LocationLabel
             // 
-            this.IsMap.AutoSize = true;
-            this.IsMap.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F);
-            this.IsMap.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.IsMap.Location = new System.Drawing.Point(6, 49);
-            this.IsMap.Name = "IsMap";
-            this.IsMap.Size = new System.Drawing.Size(48, 19);
-            this.IsMap.TabIndex = 3;
-            this.IsMap.Text = "Map";
-            this.IsMap.UseVisualStyleBackColor = true;
-            // 
-            // IsCom
-            // 
-            this.IsCom.AutoSize = true;
-            this.IsCom.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F);
-            this.IsCom.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.IsCom.Location = new System.Drawing.Point(6, 80);
-            this.IsCom.Name = "IsCom";
-            this.IsCom.Size = new System.Drawing.Size(91, 19);
-            this.IsCom.TabIndex = 4;
-            this.IsCom.Text = "Component";
-            this.IsCom.UseVisualStyleBackColor = true;
-            // 
-            // FiletextBox
-            // 
-            this.FiletextBox.Location = new System.Drawing.Point(31, 33);
-            this.FiletextBox.Name = "FiletextBox";
-            this.FiletextBox.Size = new System.Drawing.Size(427, 22);
-            this.FiletextBox.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(31, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 15);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Zip location (file)";
+            this.LocationLabel.AutoSize = true;
+            this.LocationLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.LocationLabel.Location = new System.Drawing.Point(25, 112);
+            this.LocationLabel.Name = "LocationLabel";
+            this.LocationLabel.Size = new System.Drawing.Size(96, 15);
+            this.LocationLabel.TabIndex = 6;
+            this.LocationLabel.Text = "Location (none)";
             // 
             // FilePicker
             // 
@@ -210,9 +181,9 @@
             this.BrowseBTN.FlatAppearance.BorderSize = 0;
             this.BrowseBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BrowseBTN.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BrowseBTN.Location = new System.Drawing.Point(464, 34);
+            this.BrowseBTN.Location = new System.Drawing.Point(692, 130);
             this.BrowseBTN.Name = "BrowseBTN";
-            this.BrowseBTN.Size = new System.Drawing.Size(59, 21);
+            this.BrowseBTN.Size = new System.Drawing.Size(59, 20);
             this.BrowseBTN.TabIndex = 8;
             this.BrowseBTN.Text = "Browse";
             this.BrowseBTN.UseVisualStyleBackColor = false;
@@ -225,7 +196,7 @@
             this.SimplifyBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SimplifyBTN.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F);
             this.SimplifyBTN.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SimplifyBTN.Location = new System.Drawing.Point(34, 108);
+            this.SimplifyBTN.Location = new System.Drawing.Point(28, 159);
             this.SimplifyBTN.Name = "SimplifyBTN";
             this.SimplifyBTN.Size = new System.Drawing.Size(61, 22);
             this.SimplifyBTN.TabIndex = 9;
@@ -255,61 +226,6 @@
             this.StatusLabel.TabIndex = 11;
             this.StatusLabel.Text = "Status";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F);
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(31, 56);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 15);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Zip location (Website)";
-            // 
-            // WebsitetextBox
-            // 
-            this.WebsitetextBox.Location = new System.Drawing.Point(31, 75);
-            this.WebsitetextBox.Name = "WebsitetextBox";
-            this.WebsitetextBox.ReadOnly = true;
-            this.WebsitetextBox.Size = new System.Drawing.Size(427, 22);
-            this.WebsitetextBox.TabIndex = 12;
-            // 
-            // FileRadioBTN
-            // 
-            this.FileRadioBTN.AutoSize = true;
-            this.FileRadioBTN.Checked = true;
-            this.FileRadioBTN.Location = new System.Drawing.Point(11, 33);
-            this.FileRadioBTN.Name = "FileRadioBTN";
-            this.FileRadioBTN.Size = new System.Drawing.Size(14, 13);
-            this.FileRadioBTN.TabIndex = 14;
-            this.FileRadioBTN.TabStop = true;
-            this.FileRadioBTN.UseVisualStyleBackColor = true;
-            this.FileRadioBTN.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // WebRadioBTN
-            // 
-            this.WebRadioBTN.AutoSize = true;
-            this.WebRadioBTN.Location = new System.Drawing.Point(11, 78);
-            this.WebRadioBTN.Name = "WebRadioBTN";
-            this.WebRadioBTN.Size = new System.Drawing.Size(14, 13);
-            this.WebRadioBTN.TabIndex = 15;
-            this.WebRadioBTN.UseVisualStyleBackColor = true;
-            // 
-            // TypegroupBox
-            // 
-            this.TypegroupBox.Controls.Add(this.IsMap);
-            this.TypegroupBox.Controls.Add(this.IsMod);
-            this.TypegroupBox.Controls.Add(this.IsCom);
-            this.TypegroupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TypegroupBox.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TypegroupBox.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.TypegroupBox.Location = new System.Drawing.Point(28, 41);
-            this.TypegroupBox.Name = "TypegroupBox";
-            this.TypegroupBox.Size = new System.Drawing.Size(145, 112);
-            this.TypegroupBox.TabIndex = 16;
-            this.TypegroupBox.TabStop = false;
-            this.TypegroupBox.Text = "Type";
-            // 
             // DownloadsView
             // 
             this.DownloadsView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(108)))), ((int)(((byte)(133)))));
@@ -322,8 +238,9 @@
             this.Author});
             this.DownloadsView.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadsView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(253)))));
+            this.DownloadsView.HoverSelection = true;
             this.DownloadsView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem8});
             this.DownloadsView.Location = new System.Drawing.Point(12, 203);
             this.DownloadsView.Name = "DownloadsView";
             this.DownloadsView.Size = new System.Drawing.Size(814, 292);
@@ -375,48 +292,25 @@
             "Worlds",
             "Mods",
             "Components"});
-            this.CategoryBox.Location = new System.Drawing.Point(709, 176);
+            this.CategoryBox.Location = new System.Drawing.Point(28, 63);
             this.CategoryBox.Name = "CategoryBox";
-            this.CategoryBox.Size = new System.Drawing.Size(117, 21);
+            this.CategoryBox.Size = new System.Drawing.Size(148, 21);
             this.CategoryBox.TabIndex = 18;
             this.CategoryBox.SelectedIndexChanged += new System.EventHandler(this.CategoryBox_SelectedIndexChanged);
             this.CategoryBox.SelectionChangeCommitted += new System.EventHandler(this.CategoryBox_SelectionChangeCommitted);
             // 
-            // groupBox1
+            // ReloadBTN
             // 
-            this.groupBox1.Controls.Add(this.FiletextBox);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.BrowseBTN);
-            this.groupBox1.Controls.Add(this.SimplifyBTN);
-            this.groupBox1.Controls.Add(this.WebRadioBTN);
-            this.groupBox1.Controls.Add(this.WebsitetextBox);
-            this.groupBox1.Controls.Add(this.FileRadioBTN);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox1.Location = new System.Drawing.Point(234, 27);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(592, 143);
-            this.groupBox1.TabIndex = 19;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Manual";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(739, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
-            this.label1.Size = new System.Drawing.Size(41, 21);
-            this.label1.TabIndex = 20;
-            this.label1.Text = " Help ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
-            this.label1.MouseLeave += new System.EventHandler(this.label1_MouseLeave_1);
-            this.label1.MouseHover += new System.EventHandler(this.label1_MouseHover_1);
+            this.ReloadBTN.BackColor = System.Drawing.Color.Transparent;
+            this.ReloadBTN.Image = ((System.Drawing.Image)(resources.GetObject("ReloadBTN.Image")));
+            this.ReloadBTN.Location = new System.Drawing.Point(182, 59);
+            this.ReloadBTN.Name = "ReloadBTN";
+            this.ReloadBTN.Padding = new System.Windows.Forms.Padding(3);
+            this.ReloadBTN.Size = new System.Drawing.Size(28, 28);
+            this.ReloadBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReloadBTN.TabIndex = 20;
+            this.ReloadBTN.TabStop = false;
+            this.ReloadBTN.Click += new System.EventHandler(this.Reload_Click);
             // 
             // TMFS
             // 
@@ -424,10 +318,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(89)))));
             this.ClientSize = new System.Drawing.Size(838, 518);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.SimplifyBTN);
+            this.Controls.Add(this.LocationTextbox);
+            this.Controls.Add(this.LocationLabel);
+            this.Controls.Add(this.ReloadBTN);
+            this.Controls.Add(this.BrowseBTN);
             this.Controls.Add(this.CategoryBox);
             this.Controls.Add(this.DownloadsView);
-            this.Controls.Add(this.TypegroupBox);
             this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.panel1);
@@ -439,10 +336,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).EndInit();
-            this.TypegroupBox.ResumeLayout(false);
-            this.TypegroupBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,21 +348,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label LogoTXT;
         private System.Windows.Forms.PictureBox LogoIMG;
-        private System.Windows.Forms.RadioButton IsMod;
-        private System.Windows.Forms.RadioButton IsMap;
-        private System.Windows.Forms.RadioButton IsCom;
-        private System.Windows.Forms.TextBox FiletextBox;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox LocationTextbox;
+        private System.Windows.Forms.Label LocationLabel;
         private System.Windows.Forms.OpenFileDialog FilePicker;
         private System.Windows.Forms.Button BrowseBTN;
         private System.Windows.Forms.Button SimplifyBTN;
         private System.Windows.Forms.ProgressBar ProgressBar;
         private System.Windows.Forms.Label StatusLabel;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox WebsitetextBox;
-        private System.Windows.Forms.RadioButton FileRadioBTN;
-        private System.Windows.Forms.RadioButton WebRadioBTN;
-        private System.Windows.Forms.GroupBox TypegroupBox;
         private System.Windows.Forms.ListView DownloadsView;
         private System.Windows.Forms.ColumnHeader Title;
         private System.Windows.Forms.ColumnHeader Rating;
@@ -478,8 +364,8 @@
         private System.Windows.Forms.ColumnHeader Author;
         private System.Windows.Forms.ComboBox CategoryBox;
         private System.Windows.Forms.Label Minimize;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox ReloadBTN;
     }
 }
 
