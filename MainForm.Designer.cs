@@ -32,6 +32,7 @@
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Downloads");
             this.ExitBTN = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SettingsBTN = new System.Windows.Forms.Label();
             this.HelpBTN = new System.Windows.Forms.Label();
             this.Minimize = new System.Windows.Forms.Label();
             this.LogoTXT = new System.Windows.Forms.Label();
@@ -55,12 +56,14 @@
             this.MapTab = new System.Windows.Forms.Label();
             this.ComTab = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.SettingsBTN = new System.Windows.Forms.Label();
             this.ReleaseLabel = new System.Windows.Forms.Label();
+            this.SettingsStrip = new System.Windows.Forms.MenuStrip();
+            this.SortSET = new System.Windows.Forms.ToolStripComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SettingsStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ExitBTN
@@ -97,6 +100,21 @@
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
+            // 
+            // SettingsBTN
+            // 
+            this.SettingsBTN.AutoSize = true;
+            this.SettingsBTN.BackColor = System.Drawing.Color.Transparent;
+            this.SettingsBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.SettingsBTN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SettingsBTN.Location = new System.Drawing.Point(680, 0);
+            this.SettingsBTN.Name = "SettingsBTN";
+            this.SettingsBTN.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
+            this.SettingsBTN.Size = new System.Drawing.Size(59, 21);
+            this.SettingsBTN.TabIndex = 25;
+            this.SettingsBTN.Text = " Settings ";
+            this.SettingsBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.SettingsBTN.Click += new System.EventHandler(this.SettingsBTN_Click);
             // 
             // HelpBTN
             // 
@@ -364,21 +382,6 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.Install_Click);
             // 
-            // SettingsBTN
-            // 
-            this.SettingsBTN.AutoSize = true;
-            this.SettingsBTN.BackColor = System.Drawing.Color.Transparent;
-            this.SettingsBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.SettingsBTN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.SettingsBTN.Location = new System.Drawing.Point(680, 0);
-            this.SettingsBTN.Name = "SettingsBTN";
-            this.SettingsBTN.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
-            this.SettingsBTN.Size = new System.Drawing.Size(59, 21);
-            this.SettingsBTN.TabIndex = 25;
-            this.SettingsBTN.Text = " Settings ";
-            this.SettingsBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.SettingsBTN.Visible = false;
-            // 
             // ReleaseLabel
             // 
             this.ReleaseLabel.AutoSize = true;
@@ -389,6 +392,35 @@
             this.ReleaseLabel.TabIndex = 25;
             this.ReleaseLabel.Text = "Release 30.12.17";
             // 
+            // SettingsStrip
+            // 
+            this.SettingsStrip.AutoSize = false;
+            this.SettingsStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.SettingsStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SortSET});
+            this.SettingsStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.SettingsStrip.Location = new System.Drawing.Point(682, 27);
+            this.SettingsStrip.Name = "SettingsStrip";
+            this.SettingsStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.SettingsStrip.Size = new System.Drawing.Size(156, 46);
+            this.SettingsStrip.TabIndex = 26;
+            this.SettingsStrip.Text = "menuStrip1";
+            this.SettingsStrip.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical90;
+            this.SettingsStrip.Visible = false;
+            // 
+            // SortSET
+            // 
+            this.SortSET.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SortSET.Items.AddRange(new object[] {
+            "Sort by: Newest First",
+            "Sort by: A-Z",
+            "Sort by: Z-A"});
+            this.SortSET.Name = "SortSET";
+            this.SortSET.Size = new System.Drawing.Size(147, 23);
+            this.SortSET.Text = "Sort by: Newest First";
+            this.SortSET.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical90;
+            this.SortSET.SelectedIndexChanged += new System.EventHandler(this.SortSET_IndexChanged);
+            // 
             // TMFS
             // 
             this.AllowDrop = true;
@@ -396,6 +428,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(89)))));
             this.ClientSize = new System.Drawing.Size(838, 518);
+            this.Controls.Add(this.SettingsStrip);
             this.Controls.Add(this.ReleaseLabel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ComTab);
@@ -413,6 +446,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.SettingsStrip;
             this.Name = "TMFS";
             this.Text = "Total Miner: Forge Simplifier";
             this.Load += new System.EventHandler(this.TMFS_Load);
@@ -421,6 +455,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.SettingsStrip.ResumeLayout(false);
+            this.SettingsStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,6 +491,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label SettingsBTN;
         private System.Windows.Forms.Label ReleaseLabel;
+        private System.Windows.Forms.MenuStrip SettingsStrip;
+        private System.Windows.Forms.ToolStripComboBox SortSET;
     }
 }
 

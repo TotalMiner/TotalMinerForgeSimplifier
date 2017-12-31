@@ -334,5 +334,33 @@ namespace TMF_Simplifier
             MapTab.BackColor = ButtonTheme;
             ComTab.BackColor = ButtonActiveTheme;
         }
+
+        private void SortSET_IndexChanged(object sender, EventArgs e)
+        {
+            switch (SortSET.SelectedIndex)
+            {
+                case 0:
+                    DownloadsView.Sorting = SortOrder.None;
+                    LoadContent();
+                    break;
+                case 1:
+                    DownloadsView.Sorting = SortOrder.Ascending;
+                    break;
+                case 2:
+                    DownloadsView.Sorting = SortOrder.Descending;
+                    break;
+
+                default:
+                    DownloadsView.Sorting = SortOrder.None;
+
+                    break;
+
+            }
+        }
+
+        private void SettingsBTN_Click(object sender, EventArgs e)
+        {
+            SettingsStrip.Visible = !SettingsStrip.Visible;
+        }
     }
 }
