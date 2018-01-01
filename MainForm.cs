@@ -70,6 +70,17 @@ namespace TMF_Simplifier
                 Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),(Environment.Is64BitProcess ? "x64" : "x86")),
                 "7z.dll"));
             LoadContent();
+
+
+            Category = 2;
+            Location = Path.Combine(TotalMinerMain, "Mods");
+            status = "ismod";
+            StatusLabel.Text = status;
+            LoadContent();
+
+            ModTab.BackColor = ButtonActiveTheme;
+            MapTab.BackColor = ButtonTheme;
+            ComTab.BackColor = ButtonTheme;
         }
 
         #region lastpoint
@@ -204,6 +215,7 @@ namespace TMF_Simplifier
 
         private void DownloadsView_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
 
         }
 
