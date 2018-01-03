@@ -62,19 +62,18 @@ namespace TMF_Simplifier
             Release release = await GetLatestRelease();
             Asset asset = release.assets.First();
             Uri download_uri = new Uri(asset.browser_download_url);
-            string exe_location = Assembly.GetExecutingAssembly().Location;
-            string exe_bak_location = exe_location + ".bak";
-            string extract_location = Path.GetDirectoryName(exe_location);
+            string extract_location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string download_location = Path.Combine(extract_location, "download.zip");
             await _client.DownloadFileTaskAsync(download_uri, download_location);
-            if(File.Exists(exe_bak_location))
-            {
-                File.Delete(exe_bak_location);
-            }
-            File.Move(exe_location, exe_bak_location);
-            File.Copy(exe_bak_location, exe_location);
             using (var tmp = new SevenZipExtractor(download_location))
             {
+                tmp.FileExists += (object sender, FileOverwriteEventArgs e) =>
+                {
+                    string loc = Path.Combine(extract_location, e.FileName);
+                    string bak = loc + ".bak";
+                    File.Move(loc, bak);
+                    File.Copy(bak, loc);
+                };
                 tmp.ExtractArchive(extract_location);
             }
             File.Delete(download_location);

@@ -52,6 +52,7 @@ namespace TMF_Simplifier
         HelpPage Help;
         public TMFS()
         {
+            CleanDir(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             InitializeComponent();
             if (!Directory.Exists(TotalMinerMain))
             {
@@ -400,6 +401,28 @@ namespace TMF_Simplifier
         private void SettingsBTN_Click(object sender, EventArgs e)
         {
             SettingsStrip.Visible = !SettingsStrip.Visible;
+        }
+
+        static void CleanDir(string sDir)
+        {
+            try
+            {
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    foreach (string f in Directory.GetFiles(d))
+                    {
+                        if(f.EndsWith(".bak"))
+                        {
+                            File.Delete(f);
+                        }
+                    }
+                    CleanDir(d);
+                }
+            }
+            catch (System.Exception excpt)
+            {
+                Console.WriteLine(excpt.Message);
+            }
         }
     }
 }
