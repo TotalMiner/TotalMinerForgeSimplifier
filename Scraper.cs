@@ -45,9 +45,6 @@ namespace TMF_Simplifier
                             {
                                 string href = cell.SelectSingleNode("a").Attributes["href"].Value;
                                 int index = href.IndexOf("down=") + 5;
-                                Console.WriteLine(href);
-                                Console.WriteLine(index);
-                                Console.WriteLine(href.Substring(index));
                                 TMFS.Ids[category].Add(int.Parse(href.Substring(index)));
                             }
                         }
@@ -58,7 +55,7 @@ namespace TMF_Simplifier
             }
             catch (Exception e)
             {
-                Console.WriteLine("Scraping Failed!");
+                MessageBox.Show("Scraping Failed!");
                 Console.WriteLine(e);
             }
         }

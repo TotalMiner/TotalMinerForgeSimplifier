@@ -16,6 +16,8 @@ using ScrapySharp.Extensions;
 using static System.Windows.Forms.ListViewItem;
 using SevenZip;
 using System.Reflection;
+using TMF_Simplifier.Github;
+using System.Diagnostics;
 
 namespace TMF_Simplifier
 {
@@ -25,8 +27,18 @@ namespace TMF_Simplifier
         public static int Category;
         public static List<int>[] Ids;
         static readonly string TotalMinerMain = Path.Combine(new[] { Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "TotalMiner" });
-        new string Location;
-        string status;
+        private string ExtractLocation;
+        string status
+        {
+            get
+            {
+                return StatusLabel.Text;
+            }
+            set
+            {
+                StatusLabel.Text = value;
+            }
+        }
         string filename;
         bool isLocal;
 
@@ -54,7 +66,6 @@ namespace TMF_Simplifier
             else
             {
                 status = "Ready";
-                StatusLabel.Text = status;
             }
             Instance = this;
 
@@ -64,18 +75,15 @@ namespace TMF_Simplifier
             {
                 Ids[i] = new List<int>();
             }
-            Category = 2;
             SevenZip.SevenZipExtractor.SetLibraryPath(
                 Path.Combine(
                 Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),(Environment.Is64BitProcess ? "x64" : "x86")),
                 "7z.dll"));
-            LoadContent();
 
 
             Category = 2;
-            Location = Path.Combine(TotalMinerMain, "Mods");
+            ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
             status = "ismod";
-            StatusLabel.Text = status;
             LoadContent();
 
             ModTab.BackColor = ButtonActiveTheme;
@@ -120,7 +128,6 @@ namespace TMF_Simplifier
             if (isLocal == true && (LocationTextbox.Text == null || !File.Exists(LocationTextbox.Text)))
             {
                 status = "File not found.";
-                StatusLabel.Text = status;
             }
             else
             {
@@ -132,37 +139,32 @@ namespace TMF_Simplifier
                 }
                 else
                 {
-                    zipPath = Path.Combine(Location, "TempDownload");
+                    zipPath = Path.Combine(ExtractLocation, "TempDownload");
                     Client.DownloadFile(LocationTextbox.Text, zipPath);
                     Console.WriteLine(LocationTextbox.Text + " -> " + zipPath);
                 }
                 status = "Starting";
-                StatusLabel.Text = status;
                 ProgressBar.Value = 1;
-                ProgressBar.Value = 2;
                 status = "Checking if directory exists";
+                ProgressBar.Value = 2;
 
-                if (!Directory.Exists(Location))
+                if (!Directory.Exists(ExtractLocation))
                 {
                     status = "creating directory";
-                StatusLabel.Text = status;
                     ProgressBar.Value = 3;
 
-                    Directory.CreateDirectory(Location);
+                    Directory.CreateDirectory(ExtractLocation);
                     ProgressBar.Value = 4;
 
                 }
 
                 status = "unzipping";
                 ProgressBar.Value = 5;
-                StatusLabel.Text = status;
                 using (var tmp = new SevenZipExtractor(zipPath))
                 {
-                    Console.WriteLine(Location);
-                    tmp.ExtractArchive(Location);
+                    tmp.ExtractArchive(ExtractLocation);
                 }
                 status = "completed";
-                StatusLabel.Text = status;
 
                 if(isLocal == false)
                 {
@@ -171,9 +173,35 @@ namespace TMF_Simplifier
             }
         }
 
-        private void TMFS_Load(object sender, EventArgs e)
+        private async void TMFS_Load(object sender, EventArgs e)
         {
-
+#if DEBUG
+            Console.WriteLine("In debug, not checking for updates.");
+ #else
+            Console.WriteLine("Checking for updates...");
+            Release latestRelease = await Updater.GetLatestRelease();
+            if (latestRelease != null)
+            {
+                Console.WriteLine("Got latest release");
+                if (!await Updater.IsUpToDate())
+                {
+                    DialogResult dialogResult = MessageBox.Show($"It appears there is a TMFS update available, would you like to update? ({Constants.Version} != {latestRelease.tag_name})", "TMFS Update", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        await Updater.Update();
+                        Process thisprocess = Process.GetCurrentProcess();
+                        string me = thisprocess.MainModule.FileName;
+                        Process.Start(me);
+                        thisprocess.CloseMainWindow();
+                        thisprocess.Close();
+                        thisprocess.Dispose();
+                    }
+                }
+            } else
+            {
+                Console.WriteLine("Failed to get latest release");
+            }
+#endif
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -310,9 +338,8 @@ namespace TMF_Simplifier
         private void ModTab_Click(object sender, EventArgs e)
         {
             Category = 2;
-            Location = Path.Combine(TotalMinerMain, "Mods");
+            ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
             status = "ismod";
-            StatusLabel.Text = status;
             LoadContent();
 
             ModTab.BackColor = ButtonActiveTheme;
@@ -324,9 +351,8 @@ namespace TMF_Simplifier
         private void MapTab_Click(object sender, EventArgs e)
         {
             Category = 3;
-            Location = Path.Combine(TotalMinerMain, "Maps");
+            ExtractLocation = Path.Combine(TotalMinerMain, "Maps");
             status = "ismap";
-            StatusLabel.Text = status;
             LoadContent();
 
             ModTab.BackColor = ButtonTheme;
@@ -337,9 +363,8 @@ namespace TMF_Simplifier
         private void ComTab_Click(object sender, EventArgs e)
         {
             Category = 5;
-            Location = Path.Combine(TotalMinerMain, "Com");
+            ExtractLocation = Path.Combine(TotalMinerMain, "Com");
             status = "iscom";
-            StatusLabel.Text = status;
             LoadContent();
 
             ModTab.BackColor = ButtonTheme;
