@@ -409,14 +409,15 @@ namespace TMF_Simplifier
             {
                 foreach (string d in Directory.GetDirectories(sDir))
                 {
-                    foreach (string f in Directory.GetFiles(d))
-                    {
-                        if(f.EndsWith(".bak"))
-                        {
-                            File.Delete(f);
-                        }
-                    }
                     CleanDir(d);
+                }
+
+                foreach (string f in Directory.GetFiles(sDir))
+                {
+                    if (f.EndsWith(".bak"))
+                    {
+                        File.Delete(f);
+                    }
                 }
             }
             catch (System.Exception excpt)
