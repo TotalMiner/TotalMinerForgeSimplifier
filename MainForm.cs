@@ -83,12 +83,14 @@ namespace TMF_Simplifier
 
             Category = 2;
             ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
-            status = "ismod";
+            status = "Mod";
             LoadContent();
 
             ModTab.BackColor = ButtonActiveTheme;
             MapTab.BackColor = ButtonTheme;
             ComTab.BackColor = ButtonTheme;
+
+            ReleaseLabel.Text = $"Release {Constants.Version}";
         }
 
         #region lastpoint
@@ -150,7 +152,7 @@ namespace TMF_Simplifier
 
                 if (!Directory.Exists(ExtractLocation))
                 {
-                    status = "creating directory";
+                    status = "Creating directory";
                     ProgressBar.Value = 3;
 
                     Directory.CreateDirectory(ExtractLocation);
@@ -158,13 +160,13 @@ namespace TMF_Simplifier
 
                 }
 
-                status = "unzipping";
+                status = "Unzipping";
                 ProgressBar.Value = 5;
                 using (var tmp = new SevenZipExtractor(zipPath))
                 {
                     tmp.ExtractArchive(ExtractLocation);
                 }
-                status = "completed";
+                status = "Completed";
 
                 if(isLocal == false)
                 {
@@ -339,7 +341,7 @@ namespace TMF_Simplifier
         {
             Category = 2;
             ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
-            status = "ismod";
+            status = "Mod";
             LoadContent();
 
             ModTab.BackColor = ButtonActiveTheme;
@@ -352,7 +354,7 @@ namespace TMF_Simplifier
         {
             Category = 3;
             ExtractLocation = Path.Combine(TotalMinerMain, "Maps");
-            status = "ismap";
+            status = "Map";
             LoadContent();
 
             ModTab.BackColor = ButtonTheme;
@@ -364,7 +366,7 @@ namespace TMF_Simplifier
         {
             Category = 5;
             ExtractLocation = Path.Combine(TotalMinerMain, "Com");
-            status = "iscom";
+            status = "Com";
             LoadContent();
 
             ModTab.BackColor = ButtonTheme;

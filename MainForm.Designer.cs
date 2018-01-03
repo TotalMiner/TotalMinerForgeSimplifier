@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMFS));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Downloads");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Downloads");
             this.ExitBTN = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SettingsBTN = new System.Windows.Forms.Label();
@@ -271,9 +271,9 @@
             this.DownloadsView.FullRowSelect = true;
             this.DownloadsView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.DownloadsView.HoverSelection = true;
-            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
             this.DownloadsView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.DownloadsView.Location = new System.Drawing.Point(12, 147);
             this.DownloadsView.Name = "DownloadsView";
             this.DownloadsView.Size = new System.Drawing.Size(814, 349);
@@ -386,11 +386,13 @@
             // 
             this.ReleaseLabel.AutoSize = true;
             this.ReleaseLabel.ForeColor = System.Drawing.Color.Cornsilk;
-            this.ReleaseLabel.Location = new System.Drawing.Point(739, 131);
+            this.ReleaseLabel.Location = new System.Drawing.Point(714, 131);
             this.ReleaseLabel.Name = "ReleaseLabel";
-            this.ReleaseLabel.Size = new System.Drawing.Size(91, 13);
+            this.ReleaseLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ReleaseLabel.Size = new System.Drawing.Size(112, 13);
             this.ReleaseLabel.TabIndex = 25;
-            this.ReleaseLabel.Text = "Release 30.12.17";
+            this.ReleaseLabel.Text = "Release yyyy.mm.dd.v";
+            this.ReleaseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // SettingsStrip
             // 

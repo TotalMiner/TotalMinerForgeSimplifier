@@ -8,6 +8,6 @@ namespace TMF_Simplifier
 {
     public class Constants
     {
-        public const string Version = "2018.1.3.0";
+        public const string Version = "2018.01.03.0";
     }
 }
