@@ -70,13 +70,30 @@ namespace TMF_Simplifier
                 tmp.FileExists += (object sender, FileOverwriteEventArgs e) =>
                 {
                     string loc = Path.Combine(extract_location, e.FileName);
-                    string bak = loc + ".bak";
-                    File.Move(loc, bak);
-                    File.Copy(bak, loc);
+                    if (IsInUse(loc))
+                    {
+                        string bak = loc + ".bak";
+                        File.Move(loc, bak);
+                        File.Copy(bak, loc);
+                    }
                 };
                 tmp.ExtractArchive(extract_location);
             }
             File.Delete(download_location);
+        }
+
+        private static bool IsInUse(string file)
+        {
+            try
+            {
+                FileStream fs = File.OpenWrite(file);
+                fs.Close();
+                return false;
+            }
+            catch (Exception)
+            {
+                return true;
+            }
         }
     }
 }
