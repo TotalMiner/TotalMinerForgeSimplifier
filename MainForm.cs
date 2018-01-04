@@ -48,6 +48,9 @@ namespace TMF_Simplifier
 
         Point lastPoint;
 
+        string NewSearch;
+        int PrevSearch;
+
         WebClient Client = new WebClient();
         HelpPage Help;
         public TMFS()
@@ -423,6 +426,30 @@ namespace TMF_Simplifier
             catch (System.Exception excpt)
             {
                 Console.WriteLine(excpt.Message);
+            }
+        }
+
+        private void SearchBar_TextChanged(object sender, EventArgs e)
+        {
+            NewSearch = SearchBar.Text;
+
+            if (NewSearch.Length < PrevSearch)
+            {
+                LoadContent();
+                SearchBar.Text = "";
+                PrevSearch = 0;
+            }
+            else
+            {
+                PrevSearch = NewSearch.Length;
+            }
+
+            foreach (ListViewItem item in DownloadsView.Items)
+            {
+                if (!item.ToString().Contains(SearchBar.Text))
+                {
+                    item.Remove();
+                }
             }
         }
     }
