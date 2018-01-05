@@ -131,52 +131,7 @@ namespace TMF_Simplifier
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (isLocal == true && (LocationTextbox.Text == null || !File.Exists(LocationTextbox.Text)))
-            {
-                status = "File not found.";
-            }
-            else
-            {
-                string zipPath;
-                if (isLocal == true)
-                {
-
-                    zipPath = LocationTextbox.Text;
-                }
-                else
-                {
-                    zipPath = Path.Combine(ExtractLocation, "TempDownload");
-                    Client.DownloadFile(LocationTextbox.Text, zipPath);
-                    Console.WriteLine(LocationTextbox.Text + " -> " + zipPath);
-                }
-                status = "Starting";
-                ProgressBar.Value = 1;
-                status = "Checking if directory exists";
-                ProgressBar.Value = 2;
-
-                if (!Directory.Exists(ExtractLocation))
-                {
-                    status = "Creating directory";
-                    ProgressBar.Value = 3;
-
-                    Directory.CreateDirectory(ExtractLocation);
-                    ProgressBar.Value = 4;
-
-                }
-
-                status = "Unzipping";
-                ProgressBar.Value = 5;
-                using (var tmp = new SevenZipExtractor(zipPath))
-                {
-                    tmp.ExtractArchive(ExtractLocation);
-                }
-                status = "Completed";
-
-                if(isLocal == false)
-                {
-                    File.Delete(zipPath);
-                }
-            }
+            
         }
 
         private async void TMFS_Load(object sender, EventArgs e)
@@ -249,21 +204,20 @@ namespace TMF_Simplifier
 
         private void DownloadsView_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            
 
         }
 
         private void DownloadsView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][DownloadsView.SelectedItems[0].Index];
-            Console.WriteLine("Downloading " + url);
             LocationTextbox.Text = url;
-            SimplifyBTN.PerformClick();
+
         }
 
         private void CategoryBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-
+            
         }
 
         private void minimize_Click_1(object sender, EventArgs e)
@@ -330,10 +284,55 @@ namespace TMF_Simplifier
 
         private void Install_Click(object sender, EventArgs e)
         {
-            string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][DownloadsView.SelectedItems[0].Index];
-            Console.WriteLine("Downloading " + url);
-            LocationTextbox.Text = url;
-            SimplifyBTN.PerformClick();
+            
+            Console.WriteLine("Intalling " + Location);
+
+            if (isLocal == true && (LocationTextbox.Text == null || !File.Exists(LocationTextbox.Text)))
+            {
+                status = "File not found.";
+            }
+            else
+            {
+                string zipPath;
+                if (isLocal == true)
+                {
+
+                    zipPath = LocationTextbox.Text;
+                }
+                else
+                {
+                    zipPath = Path.Combine(ExtractLocation, "TempDownload");
+                    Client.DownloadFile(LocationTextbox.Text, zipPath);
+                    Console.WriteLine(LocationTextbox.Text + " -> " + zipPath);
+                }
+                status = "Starting";
+                ProgressBar.Value = 1;
+                status = "Checking if directory exists";
+                ProgressBar.Value = 2;
+
+                if (!Directory.Exists(ExtractLocation))
+                {
+                    status = "Creating directory";
+                    ProgressBar.Value = 3;
+
+                    Directory.CreateDirectory(ExtractLocation);
+                    ProgressBar.Value = 4;
+
+                }
+
+                status = "Unzipping";
+                ProgressBar.Value = 5;
+                using (var tmp = new SevenZipExtractor(zipPath))
+                {
+                    tmp.ExtractArchive(ExtractLocation);
+                }
+                status = "Completed";
+
+                if (isLocal == false)
+                {
+                    File.Delete(zipPath);
+                }
+            }
         }
 
         private void LocationTextbox_DragDrop(object sender, DragEventArgs e)
@@ -370,7 +369,7 @@ namespace TMF_Simplifier
         {
             Category = 5;
             ExtractLocation = Path.Combine(TotalMinerMain, "Com");
-            status = "Com";
+            status = "Component";
             LoadContent();
 
             ModTab.BackColor = ButtonTheme;
@@ -451,6 +450,12 @@ namespace TMF_Simplifier
                     item.Remove();
                 }
             }
+        }
+
+        private void SearchBar_Click(object sender, EventArgs e)
+        {
+            SearchBar.Text = "";
+            PrevSearch = 0;
         }
     }
 }
