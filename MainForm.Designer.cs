@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMFS));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Downloads");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Downloads");
             this.ExitBTN = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.LogoIMG = new System.Windows.Forms.PictureBox();
+            this.LogoTXT = new System.Windows.Forms.Label();
+            this.ReleaseLabel = new System.Windows.Forms.Label();
             this.SettingsBTN = new System.Windows.Forms.Label();
             this.HelpBTN = new System.Windows.Forms.Label();
             this.Minimize = new System.Windows.Forms.Label();
-            this.LogoTXT = new System.Windows.Forms.Label();
-            this.LogoIMG = new System.Windows.Forms.PictureBox();
             this.LocationTextbox = new System.Windows.Forms.TextBox();
             this.LocationLabel = new System.Windows.Forms.Label();
             this.FilePicker = new System.Windows.Forms.OpenFileDialog();
@@ -55,19 +58,16 @@
             this.MapTab = new System.Windows.Forms.Label();
             this.ComTab = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ReleaseLabel = new System.Windows.Forms.Label();
             this.SettingsStrip = new System.Windows.Forms.MenuStrip();
             this.SortSET = new System.Windows.Forms.ToolStripComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.SearchBar = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SettingsStrip.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ExitBTN
@@ -101,6 +101,70 @@
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(137)))), ((int)(((byte)(254)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(1, 45);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(108, 15, 108, 15);
+            this.label1.Size = new System.Drawing.Size(288, 52);
+            this.label1.TabIndex = 26;
+            this.label1.Tag = "2";
+            this.label1.Text = "Installer";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(158)))));
+            this.panel2.Controls.Add(this.LogoIMG);
+            this.panel2.Controls.Add(this.LogoTXT);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(290, 38);
+            this.panel2.TabIndex = 3;
+            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
+            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
+            // 
+            // LogoIMG
+            // 
+            this.LogoIMG.Image = ((System.Drawing.Image)(resources.GetObject("LogoIMG.Image")));
+            this.LogoIMG.Location = new System.Drawing.Point(20, 7);
+            this.LogoIMG.Name = "LogoIMG";
+            this.LogoIMG.Size = new System.Drawing.Size(23, 23);
+            this.LogoIMG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LogoIMG.TabIndex = 1;
+            this.LogoIMG.TabStop = false;
+            // 
+            // LogoTXT
+            // 
+            this.LogoTXT.AutoSize = true;
+            this.LogoTXT.BackColor = System.Drawing.Color.Transparent;
+            this.LogoTXT.Font = new System.Drawing.Font("MS Outlook", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoTXT.ForeColor = System.Drawing.Color.White;
+            this.LogoTXT.Location = new System.Drawing.Point(41, 9);
+            this.LogoTXT.Name = "LogoTXT";
+            this.LogoTXT.Size = new System.Drawing.Size(213, 19);
+            this.LogoTXT.TabIndex = 2;
+            this.LogoTXT.Text = "Total Miner: Forge Simplifier";
+            this.LogoTXT.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
+            this.LogoTXT.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
+            // 
+            // ReleaseLabel
+            // 
+            this.ReleaseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ReleaseLabel.AutoSize = true;
+            this.ReleaseLabel.ForeColor = System.Drawing.Color.Cornsilk;
+            this.ReleaseLabel.Location = new System.Drawing.Point(175, 562);
+            this.ReleaseLabel.Name = "ReleaseLabel";
+            this.ReleaseLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ReleaseLabel.Size = new System.Drawing.Size(112, 13);
+            this.ReleaseLabel.TabIndex = 25;
+            this.ReleaseLabel.Text = "Release yyyy.mm.dd.v";
+            this.ReleaseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // SettingsBTN
             // 
@@ -151,30 +215,6 @@
             this.Minimize.MouseLeave += new System.EventHandler(this.Minimize_MouseLeave);
             this.Minimize.MouseHover += new System.EventHandler(this.Minimize_MouseHover);
             // 
-            // LogoTXT
-            // 
-            this.LogoTXT.AutoSize = true;
-            this.LogoTXT.BackColor = System.Drawing.Color.Transparent;
-            this.LogoTXT.Font = new System.Drawing.Font("MS Outlook", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogoTXT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.LogoTXT.Location = new System.Drawing.Point(41, 9);
-            this.LogoTXT.Name = "LogoTXT";
-            this.LogoTXT.Size = new System.Drawing.Size(213, 19);
-            this.LogoTXT.TabIndex = 2;
-            this.LogoTXT.Text = "Total Miner: Forge Simplifier";
-            this.LogoTXT.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
-            this.LogoTXT.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
-            // 
-            // LogoIMG
-            // 
-            this.LogoIMG.Image = ((System.Drawing.Image)(resources.GetObject("LogoIMG.Image")));
-            this.LogoIMG.Location = new System.Drawing.Point(16, 6);
-            this.LogoIMG.Name = "LogoIMG";
-            this.LogoIMG.Size = new System.Drawing.Size(25, 25);
-            this.LogoIMG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.LogoIMG.TabIndex = 1;
-            this.LogoIMG.TabStop = false;
-            // 
             // LocationTextbox
             // 
             this.LocationTextbox.AllowDrop = true;
@@ -205,7 +245,7 @@
             // 
             // BrowseBTN
             // 
-            this.BrowseBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(124)))), ((int)(((byte)(150)))));
+            this.BrowseBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(137)))), ((int)(((byte)(254)))));
             this.BrowseBTN.FlatAppearance.BorderSize = 0;
             this.BrowseBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BrowseBTN.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -231,8 +271,9 @@
             // 
             this.StatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.StatusLabel.AutoSize = true;
-            this.StatusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(137)))), ((int)(((byte)(254)))));
-            this.StatusLabel.Location = new System.Drawing.Point(706, 56);
+            this.StatusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StatusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.StatusLabel.Location = new System.Drawing.Point(706, 57);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(37, 13);
             this.StatusLabel.TabIndex = 11;
@@ -256,9 +297,9 @@
             this.DownloadsView.FullRowSelect = true;
             this.DownloadsView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.DownloadsView.HoverSelection = true;
-            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
             this.DownloadsView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.DownloadsView.Location = new System.Drawing.Point(290, 77);
             this.DownloadsView.Name = "DownloadsView";
             this.DownloadsView.Size = new System.Drawing.Size(815, 498);
@@ -302,7 +343,7 @@
             // 
             this.ReloadBTN.BackColor = System.Drawing.Color.Transparent;
             this.ReloadBTN.Image = ((System.Drawing.Image)(resources.GetObject("ReloadBTN.Image")));
-            this.ReloadBTN.Location = new System.Drawing.Point(460, 46);
+            this.ReloadBTN.Location = new System.Drawing.Point(460, 47);
             this.ReloadBTN.Name = "ReloadBTN";
             this.ReloadBTN.Padding = new System.Windows.Forms.Padding(3);
             this.ReloadBTN.Size = new System.Drawing.Size(27, 27);
@@ -314,9 +355,9 @@
             // ModTab
             // 
             this.ModTab.AutoSize = true;
-            this.ModTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(144)))), ((int)(((byte)(180)))));
-            this.ModTab.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ModTab.Location = new System.Drawing.Point(293, 50);
+            this.ModTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.ModTab.ForeColor = System.Drawing.Color.White;
+            this.ModTab.Location = new System.Drawing.Point(293, 51);
             this.ModTab.Name = "ModTab";
             this.ModTab.Padding = new System.Windows.Forms.Padding(4);
             this.ModTab.Size = new System.Drawing.Size(41, 21);
@@ -328,9 +369,9 @@
             // MapTab
             // 
             this.MapTab.AutoSize = true;
-            this.MapTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(124)))), ((int)(((byte)(150)))));
-            this.MapTab.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.MapTab.Location = new System.Drawing.Point(335, 50);
+            this.MapTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.MapTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.MapTab.Location = new System.Drawing.Point(335, 51);
             this.MapTab.Name = "MapTab";
             this.MapTab.Padding = new System.Windows.Forms.Padding(4);
             this.MapTab.Size = new System.Drawing.Size(48, 21);
@@ -342,9 +383,9 @@
             // ComTab
             // 
             this.ComTab.AutoSize = true;
-            this.ComTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(124)))), ((int)(((byte)(150)))));
-            this.ComTab.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ComTab.Location = new System.Drawing.Point(384, 50);
+            this.ComTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.ComTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ComTab.Location = new System.Drawing.Point(384, 51);
             this.ComTab.Name = "ComTab";
             this.ComTab.Padding = new System.Windows.Forms.Padding(4);
             this.ComTab.Size = new System.Drawing.Size(74, 21);
@@ -357,7 +398,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(489, 46);
+            this.pictureBox1.Location = new System.Drawing.Point(489, 47);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Padding = new System.Windows.Forms.Padding(3);
@@ -366,19 +407,6 @@
             this.pictureBox1.TabIndex = 24;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.Install_Click);
-            // 
-            // ReleaseLabel
-            // 
-            this.ReleaseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReleaseLabel.AutoSize = true;
-            this.ReleaseLabel.ForeColor = System.Drawing.Color.Cornsilk;
-            this.ReleaseLabel.Location = new System.Drawing.Point(175, 562);
-            this.ReleaseLabel.Name = "ReleaseLabel";
-            this.ReleaseLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ReleaseLabel.Size = new System.Drawing.Size(112, 13);
-            this.ReleaseLabel.TabIndex = 25;
-            this.ReleaseLabel.Text = "Release yyyy.mm.dd.v";
-            this.ReleaseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // SettingsStrip
             // 
@@ -409,42 +437,15 @@
             this.SortSET.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical90;
             this.SortSET.SelectedIndexChanged += new System.EventHandler(this.SortSET_IndexChanged);
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(158)))));
-            this.panel2.Controls.Add(this.LogoIMG);
-            this.panel2.Controls.Add(this.LogoTXT);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(290, 38);
-            this.panel2.TabIndex = 3;
-            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
-            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
-            // 
             // SearchBar
             // 
-            this.SearchBar.Location = new System.Drawing.Point(519, 50);
+            this.SearchBar.Location = new System.Drawing.Point(519, 51);
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(183, 20);
             this.SearchBar.TabIndex = 27;
             this.SearchBar.Text = "Search";
             this.SearchBar.Click += new System.EventHandler(this.SearchBar_Click);
             this.SearchBar.TextChanged += new System.EventHandler(this.SearchBar_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(137)))), ((int)(((byte)(254)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(1, 45);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(108, 15, 108, 15);
-            this.label1.Size = new System.Drawing.Size(288, 52);
-            this.label1.TabIndex = 26;
-            this.label1.Tag = "2";
-            this.label1.Text = "Installer";
             // 
             // panel3
             // 
@@ -491,13 +492,13 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.SettingsStrip.ResumeLayout(false);
             this.SettingsStrip.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

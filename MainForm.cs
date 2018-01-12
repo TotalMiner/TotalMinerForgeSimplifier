@@ -42,9 +42,10 @@ namespace TMF_Simplifier
         string filename;
         bool isLocal;
 
-        Color ButtonActiveTheme = ColorTranslator.FromHtml("#7B90B4");
-        Color ButtonHighlightTheme = ColorTranslator.FromHtml("#7A718B");
-        Color ButtonTheme = ColorTranslator.FromHtml("#857C96");
+        public readonly Color ButtonActiveTheme = ColorTranslator.FromHtml("#4489FE");
+        public readonly Color ButtonHighlightTheme = ColorTranslator.FromHtml("#7A718B");
+        public readonly Color ButtonTheme = ColorTranslator.FromHtml("#C0C0FF");
+        public readonly Color DarkText = ColorTranslator.FromHtml("#404040");
 
         Point lastPoint;
 
@@ -350,6 +351,9 @@ namespace TMF_Simplifier
             ModTab.BackColor = ButtonActiveTheme;
             MapTab.BackColor = ButtonTheme;
             ComTab.BackColor = ButtonTheme;
+            ModTab.ForeColor = Color.White;
+            MapTab.ForeColor = DarkText;
+            ComTab.ForeColor = DarkText;
 
         }
 
@@ -363,6 +367,9 @@ namespace TMF_Simplifier
             ModTab.BackColor = ButtonTheme;
             MapTab.BackColor = ButtonActiveTheme;
             ComTab.BackColor = ButtonTheme;
+            ModTab.ForeColor = DarkText;
+            MapTab.ForeColor = Color.White;
+            ComTab.ForeColor = DarkText;
         }
 
         private void ComTab_Click(object sender, EventArgs e)
@@ -375,6 +382,9 @@ namespace TMF_Simplifier
             ModTab.BackColor = ButtonTheme;
             MapTab.BackColor = ButtonTheme;
             ComTab.BackColor = ButtonActiveTheme;
+            ModTab.ForeColor = DarkText;
+            MapTab.ForeColor = DarkText;
+            ComTab.ForeColor = Color.White;
         }
 
         private void SortSET_IndexChanged(object sender, EventArgs e)
