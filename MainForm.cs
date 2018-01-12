@@ -74,7 +74,7 @@ namespace TMF_Simplifier
             }
             Instance = this;
 
-            DownloadsView.Items.Clear();
+            ItemView.Items.Clear();
             Ids = new List<int>[6];
             for(int i = 0; i < 6; i++)
             {
@@ -177,7 +177,7 @@ namespace TMF_Simplifier
 
         private void LoadContent()
         {
-            DownloadsView.Items.Clear();
+            ItemView.Items.Clear();
             Task.Factory.StartNew(() => Scraper.Scrape(Category,0));
         }
 
@@ -188,15 +188,15 @@ namespace TMF_Simplifier
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
-            if (this.DownloadsView.InvokeRequired)
+            if (this.ItemView.InvokeRequired)
             {
                 AddRowCallback d = new AddRowCallback(AddRow);
                 this.Invoke(d, new object[] { row });
             }
             else
             {
-                this.DownloadsView.Items.Add(row);
-                foreach(ColumnHeader header in DownloadsView.Columns)
+                this.ItemView.Items.Add(row);
+                foreach(ColumnHeader header in ItemView.Columns)
                 {
                     header.Width = -2;
                 }
@@ -211,7 +211,7 @@ namespace TMF_Simplifier
 
         private void DownloadsView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][DownloadsView.SelectedItems[0].Index];
+            string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][ItemView.SelectedItems[0].Index];
             LocationTextbox.Text = url;
 
         }
@@ -392,18 +392,18 @@ namespace TMF_Simplifier
             switch (SortSET.SelectedIndex)
             {
                 case 0:
-                    DownloadsView.Sorting = SortOrder.None;
+                    ItemView.Sorting = SortOrder.None;
                     LoadContent();
                     break;
                 case 1:
-                    DownloadsView.Sorting = SortOrder.Ascending;
+                    ItemView.Sorting = SortOrder.Ascending;
                     break;
                 case 2:
-                    DownloadsView.Sorting = SortOrder.Descending;
+                    ItemView.Sorting = SortOrder.Descending;
                     break;
 
                 default:
-                    DownloadsView.Sorting = SortOrder.None;
+                    ItemView.Sorting = SortOrder.None;
 
                     break;
 
@@ -453,7 +453,7 @@ namespace TMF_Simplifier
                 PrevSearch = NewSearch.Length;
             }
 
-            foreach (ListViewItem item in DownloadsView.Items)
+            foreach (ListViewItem item in ItemView.Items)
             {
                 if (!item.ToString().Contains(SearchBar.Text))
                 {
@@ -466,6 +466,21 @@ namespace TMF_Simplifier
         {
             SearchBar.Text = "";
             PrevSearch = 0;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            string[] Downloads = Directory.GetDirectories(ExtractLocation);
+            ItemView.Items.Clear();
+            foreach (string item in Downloads)
+            {
+                ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
+            }
+        }
+
+        private void ViewChangelog(object sender, EventArgs e)
+        {
+
         }
     }
 }
