@@ -20,6 +20,10 @@ namespace TMF_Simplifier
 
         public async static void Scrape(int category, int page)
         {
+            if(page == 1)
+            {
+                Reset();
+            }
             try
             {
                 Browser.AllowAutoRedirect = true;
@@ -62,7 +66,7 @@ namespace TMF_Simplifier
                         
                         foreach(HtmlNode node in htmlNodes)
                         {
-                            if(node.SelectNodes("a").Count() > 0)
+                            if(node.SelectNodes("a") != null)
                             {
                                 foreach (HtmlNode aNode in node.SelectNodes("a"))
                                 {
@@ -103,6 +107,13 @@ namespace TMF_Simplifier
                 MessageBox.Show("Scraping Failed!");
                 Console.WriteLine(e);
             }
+        }
+
+        public static void Reset()
+        {
+            totalPages = 0;
+            itemsScraped = 0;
+            pagesScraped = 0;
         }
     }
 }
