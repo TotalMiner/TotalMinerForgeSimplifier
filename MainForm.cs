@@ -178,7 +178,7 @@ namespace TMF_Simplifier
         private void LoadContent()
         {
             ItemView.Items.Clear();
-            Task.Factory.StartNew(() => Scraper.Scrape(Category,0));
+            Task.Factory.StartNew(() => Scraper.Scrape(Category,1));
         }
 
         delegate void AddRowCallback(ListViewItem row);
