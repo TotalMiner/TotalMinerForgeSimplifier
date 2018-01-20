@@ -28,7 +28,7 @@ namespace TMF_Simplifier
         public static List<int>[] Ids;
         static readonly string TotalMinerMain = Path.Combine(new[] { Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "TotalMiner" });
         private string ExtractLocation;
-        string status
+        string Status
         {
             get
             {
@@ -41,6 +41,8 @@ namespace TMF_Simplifier
         }
         string filename;
         bool isLocal;
+
+        int FunctionTab = 0;
 
         public readonly Color ButtonActiveTheme = ColorTranslator.FromHtml("#4489FE");
         public readonly Color ButtonHighlightTheme = ColorTranslator.FromHtml("#7A718B");
@@ -66,11 +68,11 @@ namespace TMF_Simplifier
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                     );
-                status = "Not ready, check that Total Miner has been installed properly";
+                Status = "Not ready, check that Total Miner has been installed properly";
             }
             else
             {
-                status = "Ready";
+                Status = "Ready";
             }
             Instance = this;
 
@@ -88,7 +90,7 @@ namespace TMF_Simplifier
 
             Category = 2;
             ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
-            status = "Mod";
+            Status = "Mod";
             LoadContent();
 
             ModTab.BackColor = ButtonActiveTheme;
@@ -290,7 +292,7 @@ namespace TMF_Simplifier
 
             if (isLocal == true && (LocationTextbox.Text == null || !File.Exists(LocationTextbox.Text)))
             {
-                status = "File not found.";
+                Status = "File not found.";
             }
             else
             {
@@ -306,14 +308,14 @@ namespace TMF_Simplifier
                     Client.DownloadFile(LocationTextbox.Text, zipPath);
                     Console.WriteLine(LocationTextbox.Text + " -> " + zipPath);
                 }
-                status = "Starting";
+                Status = "Starting";
                 ProgressBar.Value = 1;
-                status = "Checking if directory exists";
+                Status = "Checking if directory exists";
                 ProgressBar.Value = 2;
 
                 if (!Directory.Exists(ExtractLocation))
                 {
-                    status = "Creating directory";
+                    Status = "Creating directory";
                     ProgressBar.Value = 3;
 
                     Directory.CreateDirectory(ExtractLocation);
@@ -321,13 +323,13 @@ namespace TMF_Simplifier
 
                 }
 
-                status = "Unzipping";
+                Status = "Unzipping";
                 ProgressBar.Value = 5;
                 using (var tmp = new SevenZipExtractor(zipPath))
                 {
                     tmp.ExtractArchive(ExtractLocation);
                 }
-                status = "Completed";
+                Status = "Completed";
 
                 if (isLocal == false)
                 {
@@ -343,17 +345,30 @@ namespace TMF_Simplifier
 
         private void ModTab_Click(object sender, EventArgs e)
         {
-            Category = 2;
-            ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
-            status = "Mod";
-            LoadContent();
 
-            ModTab.BackColor = ButtonActiveTheme;
-            MapTab.BackColor = ButtonTheme;
-            ComTab.BackColor = ButtonTheme;
-            ModTab.ForeColor = Color.White;
-            MapTab.ForeColor = DarkText;
-            ComTab.ForeColor = DarkText;
+            Category = 2;
+                ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
+
+                ModTab.BackColor = ButtonActiveTheme;
+                MapTab.BackColor = ButtonTheme;
+                ComTab.BackColor = ButtonTheme;
+                ModTab.ForeColor = Color.White;
+                MapTab.ForeColor = DarkText;
+                ComTab.ForeColor = DarkText;
+            if (FunctionTab == 0)
+            {
+                Status = "Mod";
+                LoadContent();
+            }
+            else if (FunctionTab == 1)
+            {
+                string[] Downloads = Directory.GetDirectories(ExtractLocation);
+                ItemView.Items.Clear();
+                foreach (string item in Downloads)
+                {
+                    ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
+                }
+            }
 
         }
 
@@ -361,30 +376,55 @@ namespace TMF_Simplifier
         {
             Category = 3;
             ExtractLocation = Path.Combine(TotalMinerMain, "Maps");
-            status = "Map";
-            LoadContent();
 
-            ModTab.BackColor = ButtonTheme;
-            MapTab.BackColor = ButtonActiveTheme;
-            ComTab.BackColor = ButtonTheme;
-            ModTab.ForeColor = DarkText;
-            MapTab.ForeColor = Color.White;
-            ComTab.ForeColor = DarkText;
+                ModTab.BackColor = ButtonTheme;
+                MapTab.BackColor = ButtonActiveTheme;
+                ComTab.BackColor = ButtonTheme;
+                ModTab.ForeColor = DarkText;
+                MapTab.ForeColor = Color.White;
+                ComTab.ForeColor = DarkText;
+            if (FunctionTab == 0)
+            {
+                
+                Status = "Map";
+                LoadContent();
+            }
+            else if (FunctionTab == 1)
+            {
+                string[] Downloads = Directory.GetDirectories(ExtractLocation);
+                ItemView.Items.Clear();
+                foreach (string item in Downloads)
+                {
+                    ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
+                }
+            }
         }
 
         private void ComTab_Click(object sender, EventArgs e)
         {
-            Category = 5;
-            ExtractLocation = Path.Combine(TotalMinerMain, "Com");
-            status = "Component";
-            LoadContent();
+                Category = 5;
+                ExtractLocation = Path.Combine(TotalMinerMain, "Com");
 
-            ModTab.BackColor = ButtonTheme;
-            MapTab.BackColor = ButtonTheme;
-            ComTab.BackColor = ButtonActiveTheme;
-            ModTab.ForeColor = DarkText;
-            MapTab.ForeColor = DarkText;
-            ComTab.ForeColor = Color.White;
+                ModTab.BackColor = ButtonTheme;
+                MapTab.BackColor = ButtonTheme;
+                ComTab.BackColor = ButtonActiveTheme;
+                ModTab.ForeColor = DarkText;
+                MapTab.ForeColor = DarkText;
+                ComTab.ForeColor = Color.White;
+            if (FunctionTab == 0)
+            {
+                Status = "Component";
+                LoadContent();
+            }
+            else if (FunctionTab == 1)
+            {
+                string[] Downloads = Directory.GetDirectories(ExtractLocation);
+                ItemView.Items.Clear();
+                foreach (string item in Downloads)
+                {
+                    ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
+                }
+            }
         }
 
         private void SortSET_IndexChanged(object sender, EventArgs e)
@@ -470,15 +510,36 @@ namespace TMF_Simplifier
 
         private void label2_Click(object sender, EventArgs e)
         {
+            FunctionTab = 1;
             string[] Downloads = Directory.GetDirectories(ExtractLocation);
             ItemView.Items.Clear();
             foreach (string item in Downloads)
             {
                 ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
             }
+            panel4.Visible = false;
         }
 
         private void ViewChangelog(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_2(object sender, EventArgs e)
+        {
+            FunctionTab = 0;
+            ItemView.Items.Clear();
+            LoadContent();
+            panel4.Visible = true;
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
         {
 
         }
