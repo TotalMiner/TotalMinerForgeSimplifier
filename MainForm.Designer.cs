@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMFS));
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Downloads");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Downloads");
             this.ExitBTN = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -326,9 +326,9 @@
             this.ItemView.FullRowSelect = true;
             this.ItemView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.ItemView.HoverSelection = true;
-            listViewItem3.StateImageIndex = 0;
+            listViewItem5.StateImageIndex = 0;
             this.ItemView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem5});
             this.ItemView.Location = new System.Drawing.Point(290, 77);
             this.ItemView.MultiSelect = false;
             this.ItemView.Name = "ItemView";
@@ -374,6 +374,7 @@
             this.ReloadBTN.BackColor = System.Drawing.Color.Transparent;
             this.ReloadBTN.Image = ((System.Drawing.Image)(resources.GetObject("ReloadBTN.Image")));
             this.ReloadBTN.Location = new System.Drawing.Point(459, 46);
+            this.ReloadBTN.Margin = new System.Windows.Forms.Padding(6);
             this.ReloadBTN.Name = "ReloadBTN";
             this.ReloadBTN.Padding = new System.Windows.Forms.Padding(3);
             this.ReloadBTN.Size = new System.Drawing.Size(27, 27);
