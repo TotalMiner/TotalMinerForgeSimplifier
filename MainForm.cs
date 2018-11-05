@@ -42,12 +42,15 @@ namespace TMF_Simplifier
         string filename;
         bool isLocal;
 
-        int FunctionTab = 0;
+        public static int FunctionTab = 0;
 
         public readonly Color ButtonActiveTheme = ColorTranslator.FromHtml("#4489FE");
         public readonly Color ButtonHighlightTheme = ColorTranslator.FromHtml("#7A718B");
         public readonly Color ButtonTheme = ColorTranslator.FromHtml("#C0C0FF");
         public readonly Color DarkText = ColorTranslator.FromHtml("#404040");
+        public readonly Color PageSelection = ColorTranslator.FromHtml("#8080FF");
+        public readonly Color PageSelectionText = ColorTranslator.FromHtml("#404040");
+        public readonly Color HeadTab = ColorTranslator.FromHtml("#303F9E");
 
         Point lastPoint;
 
@@ -96,6 +99,7 @@ namespace TMF_Simplifier
             ModTab.BackColor = ButtonActiveTheme;
             MapTab.BackColor = ButtonTheme;
             ComTab.BackColor = ButtonTheme;
+            
 
             ReleaseLabel.Text = $"Release {Constants.Version}";
         }
@@ -137,11 +141,11 @@ namespace TMF_Simplifier
             
         }
 
-        private async void TMFS_Load(object sender, EventArgs e)
+        private void TMFS_Load(object sender, EventArgs e)
         {
 #if DEBUG
             Console.WriteLine("In debug, not checking for updates.");
- #else
+#else
             Console.WriteLine("Checking for updates...");
             Release latestRelease = await Updater.GetLatestRelease();
             if (latestRelease != null)
@@ -170,17 +174,36 @@ namespace TMF_Simplifier
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (FilePicker.ShowDialog(this) == DialogResult.OK)
+            if (FunctionTab == 0)
             {
-                LocationTextbox.Text = FilePicker.InitialDirectory + FilePicker.FileName;
-                filename = FilePicker.FileName;
+                if (FilePicker.ShowDialog(this) == DialogResult.OK)
+                {
+                    LocationTextbox.Text = FilePicker.InitialDirectory + FilePicker.FileName;
+                    filename = FilePicker.FileName;
+                }
+            }
+            else if(FunctionTab == 1)
+            {
+                if (!string.IsNullOrEmpty(LocationTextbox.Text))
+                {
+                    string DelObj = LocationTextbox.Text;
+                    ConsoleText.Text += "Deleting " + DelObj + Environment.NewLine;
+                    Directory.Delete(DelObj, true);
+                    ConsoleText.Text += "Deleted";
+                    DownloadPage();
+                    LocationTextbox.Text = "";
+                }
+                else
+                {
+                    ConsoleText.Text += "[Prevented bad deletion]";
+                }
             }
         }
 
         private void LoadContent()
         {
-            ItemView.Items.Clear();
-            Task.Factory.StartNew(() => Scraper.Scrape(Category,1));
+                ItemView.Items.Clear();
+                Task.Factory.StartNew(() => Scraper.Scrape(Category, 1));
         }
 
         delegate void AddRowCallback(ListViewItem row);
@@ -213,9 +236,17 @@ namespace TMF_Simplifier
 
         private void DownloadsView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][ItemView.SelectedItems[0].Index];
-            LocationTextbox.Text = url;
-
+            if (FunctionTab == 0)
+            {
+                string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][ItemView.SelectedItems[0].Index];
+                LocationTextbox.Text = url;
+            }
+            else if (FunctionTab == 1)
+            {
+                string ItemSelected = Path.Combine(ExtractLocation , ItemView.SelectedItems[0].SubItems[0].Text.Replace("\n",""));
+                LocationTextbox.Text = ItemSelected;
+                LocationLabel.Text = "Intalled item:";
+            }
         }
 
         private void CategoryBox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -258,7 +289,15 @@ namespace TMF_Simplifier
 
         private void Reload_Click(object sender, EventArgs e)
         {
-            LoadContent();
+            if (FunctionTab == 0)
+            {
+                LoadContent();
+            }
+            else if (FunctionTab == 1)
+            {
+                DownloadPage();
+
+            }
         }
 
         private void FiletextBox_TextChanged(object sender, EventArgs e)
@@ -296,7 +335,7 @@ namespace TMF_Simplifier
             }
             else
             {
-                string zipPath;
+                string zipPath = "";
                 if (isLocal == true)
                 {
 
@@ -304,11 +343,21 @@ namespace TMF_Simplifier
                 }
                 else
                 {
-                    zipPath = Path.Combine(ExtractLocation, "TempDownload");
-                    Client.DownloadFile(LocationTextbox.Text, zipPath);
-                    Console.WriteLine(LocationTextbox.Text + " -> " + zipPath);
+                    if (!string.IsNullOrEmpty(LocationTextbox.Text))
+                    {
+                        zipPath = Path.Combine(ExtractLocation, "TempDownload");
+                        Client.DownloadFile(LocationTextbox.Text, zipPath);
+                        Console.WriteLine(LocationTextbox.Text + " -> " + zipPath);
+                    }
+                    else
+                    {
+                        StatusLabel.ForeColor = Color.Red;
+                        Status = "Error, check console";
+                        ConsoleText.Text += "[Cannot leave location blank]";
+                    }
                 }
                 Status = "Starting";
+                StatusLabel.ForeColor = Color.Gold;
                 ProgressBar.Value = 1;
                 Status = "Checking if directory exists";
                 ProgressBar.Value = 2;
@@ -324,16 +373,35 @@ namespace TMF_Simplifier
                 }
 
                 Status = "Unzipping";
-                ProgressBar.Value = 5;
-                using (var tmp = new SevenZipExtractor(zipPath))
+                
+                try
                 {
-                    tmp.ExtractArchive(ExtractLocation);
+                    using (var tmp = new SevenZipExtractor(zipPath))
+                    {
+                        tmp.ExtractArchive(ExtractLocation);
+                    }
+                    StatusLabel.ForeColor = Color.Lime;
+                    Status = "Completed";
+                    ProgressBar.Value = 5;
                 }
-                Status = "Completed";
+                catch (Exception error)
+                {
+                    Status = "Error, can't unzip file.";
+                    StatusLabel.ForeColor = Color.Red;
+                    ProgressBar.Value = 0;
+                    ConsoleText.Text += error.ToString();
 
+                }
                 if (isLocal == false)
                 {
+                    try
+                    { 
                     File.Delete(zipPath);
+                }
+                    catch(Exception error)
+                    {
+                        ConsoleText.Text += error.ToString();
+                    }
                 }
             }
         }
@@ -348,8 +416,9 @@ namespace TMF_Simplifier
 
             Category = 2;
                 ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
+            StatusLabel.ForeColor = Color.LightSeaGreen;
 
-                ModTab.BackColor = ButtonActiveTheme;
+            ModTab.BackColor = ButtonActiveTheme;
                 MapTab.BackColor = ButtonTheme;
                 ComTab.BackColor = ButtonTheme;
                 ModTab.ForeColor = Color.White;
@@ -376,8 +445,9 @@ namespace TMF_Simplifier
         {
             Category = 3;
             ExtractLocation = Path.Combine(TotalMinerMain, "Maps");
+            StatusLabel.ForeColor = Color.LightSeaGreen;
 
-                ModTab.BackColor = ButtonTheme;
+            ModTab.BackColor = ButtonTheme;
                 MapTab.BackColor = ButtonActiveTheme;
                 ComTab.BackColor = ButtonTheme;
                 ModTab.ForeColor = DarkText;
@@ -404,7 +474,7 @@ namespace TMF_Simplifier
         {
                 Category = 5;
                 ExtractLocation = Path.Combine(TotalMinerMain, "Com");
-
+            StatusLabel.ForeColor = Color.LightSeaGreen;
                 ModTab.BackColor = ButtonTheme;
                 MapTab.BackColor = ButtonTheme;
                 ComTab.BackColor = ButtonActiveTheme;
@@ -484,7 +554,15 @@ namespace TMF_Simplifier
 
             if (NewSearch.Length < PrevSearch)
             {
-                LoadContent();
+                if (FunctionTab == 0)
+                {
+                    LoadContent();
+                }
+                else if (FunctionTab == 1)
+                {
+                    DownloadPage();
+
+                }
                 SearchBar.Text = "";
                 PrevSearch = 0;
             }
@@ -508,17 +586,30 @@ namespace TMF_Simplifier
             PrevSearch = 0;
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        public void Label2_Click(object sender, EventArgs e)
         {
+            InstalledPage.BackColor = PageSelection;
+            InstallPage.BackColor = ButtonTheme;
+
+            InstallPage.ForeColor = PageSelectionText;
+            InstalledPage.ForeColor = Color.White;
             FunctionTab = 1;
+            DownloadPage();
+            DownloadBTN.Visible = false;
+            BrowseBTN.Text = "Delete";
+            LocationTextbox.ReadOnly = true;
+        }
+
+        public void DownloadPage()
+        {
             string[] Downloads = Directory.GetDirectories(ExtractLocation);
             ItemView.Items.Clear();
             foreach (string item in Downloads)
             {
                 ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
             }
-            panel4.Visible = false;
         }
+
 
         private void ViewChangelog(object sender, EventArgs e)
         {
@@ -527,10 +618,17 @@ namespace TMF_Simplifier
 
         private void label1_Click_2(object sender, EventArgs e)
         {
+            InstalledPage.BackColor = ButtonTheme;
+            InstallPage.BackColor = PageSelection;
+
+            InstallPage.ForeColor = Color.White;
+            InstalledPage.ForeColor = PageSelectionText;
             FunctionTab = 0;
             ItemView.Items.Clear();
             LoadContent();
-            panel4.Visible = true;
+            DownloadBTN.Visible = true;
+            BrowseBTN.Text = "Browse";
+            LocationTextbox.ReadOnly = false;
 
         }
 
@@ -542,6 +640,15 @@ namespace TMF_Simplifier
         private void panel6_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void changelog_Click(object sender, EventArgs e)
+        {
+            ConsoleText.Text = "";
+            foreach(string Change in Constants.ChangeLog)
+            {
+                ConsoleText.Text += Change + Environment.NewLine;
+            }
         }
     }
 }

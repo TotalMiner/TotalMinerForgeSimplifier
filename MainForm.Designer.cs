@@ -29,15 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMFS));
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Downloads");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Downloads");
             this.ExitBTN = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.Pages = new System.Windows.Forms.Panel();
+            this.ConsolePanel = new System.Windows.Forms.Panel();
+            this.ConsoleText = new System.Windows.Forms.TextBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.ReleaseLabel = new System.Windows.Forms.Label();
+            this.changelog = new System.Windows.Forms.Button();
+            this.InstalledPage = new System.Windows.Forms.Label();
+            this.InstallPage = new System.Windows.Forms.Label();
+            this.TitlePanel = new System.Windows.Forms.Panel();
             this.LogoIMG = new System.Windows.Forms.PictureBox();
             this.LogoTXT = new System.Windows.Forms.Label();
-            this.ReleaseLabel = new System.Windows.Forms.Label();
             this.SettingsBTN = new System.Windows.Forms.Label();
             this.HelpBTN = new System.Windows.Forms.Label();
             this.Minimize = new System.Windows.Forms.Label();
@@ -58,21 +62,23 @@
             this.ModTab = new System.Windows.Forms.Label();
             this.MapTab = new System.Windows.Forms.Label();
             this.ComTab = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.DownloadBTN = new System.Windows.Forms.PictureBox();
             this.SettingsStrip = new System.Windows.Forms.MenuStrip();
             this.SortSET = new System.Windows.Forms.ToolStripComboBox();
             this.SearchBar = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.LocationPanel = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.LineSperator = new System.Windows.Forms.Panel();
+            this.Pages.SuspendLayout();
+            this.ConsolePanel.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.TitlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DownloadBTN)).BeginInit();
             this.SettingsStrip.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.LocationPanel.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,12 +86,12 @@
             // 
             this.ExitBTN.AutoSize = true;
             this.ExitBTN.BackColor = System.Drawing.Color.Transparent;
-            this.ExitBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.ExitBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.ExitBTN.ForeColor = System.Drawing.Color.White;
             this.ExitBTN.Location = new System.Drawing.Point(139, 1);
             this.ExitBTN.Name = "ExitBTN";
             this.ExitBTN.Padding = new System.Windows.Forms.Padding(2, 0, 0, 5);
-            this.ExitBTN.Size = new System.Drawing.Size(31, 25);
+            this.ExitBTN.Size = new System.Drawing.Size(38, 30);
             this.ExitBTN.TabIndex = 0;
             this.ExitBTN.Text = " × ";
             this.ExitBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -93,64 +99,131 @@
             this.ExitBTN.MouseLeave += new System.EventHandler(this.label1_MouseLeave);
             this.ExitBTN.MouseHover += new System.EventHandler(this.label1_MouseHover);
             // 
-            // panel1
+            // Pages
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(180)))));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.ReleaseLabel);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(290, 575);
-            this.panel1.TabIndex = 1;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
+            this.Pages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(180)))));
+            this.Pages.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Pages.Controls.Add(this.ConsolePanel);
+            this.Pages.Controls.Add(this.panel8);
+            this.Pages.Controls.Add(this.InstalledPage);
+            this.Pages.Controls.Add(this.InstallPage);
+            this.Pages.Controls.Add(this.TitlePanel);
+            this.Pages.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Pages.Location = new System.Drawing.Point(0, 0);
+            this.Pages.Name = "Pages";
+            this.Pages.Size = new System.Drawing.Size(290, 588);
+            this.Pages.TabIndex = 1;
+            this.Pages.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
+            this.Pages.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
             // 
-            // label2
+            // ConsolePanel
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(0, 101);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(108, 15, 108, 15);
-            this.label2.Size = new System.Drawing.Size(292, 52);
-            this.label2.TabIndex = 27;
-            this.label2.Tag = "2";
-            this.label2.Text = "Installed";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.ConsolePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(108)))), ((int)(((byte)(183)))));
+            this.ConsolePanel.Controls.Add(this.ConsoleText);
+            this.ConsolePanel.Location = new System.Drawing.Point(0, 158);
+            this.ConsolePanel.Name = "ConsolePanel";
+            this.ConsolePanel.Size = new System.Drawing.Size(292, 392);
+            this.ConsolePanel.TabIndex = 28;
             // 
-            // label1
+            // ConsoleText
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1, 45);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(108, 15, 108, 15);
-            this.label1.Size = new System.Drawing.Size(288, 52);
-            this.label1.TabIndex = 26;
-            this.label1.Tag = "2";
-            this.label1.Text = "Installer";
-            this.label1.Click += new System.EventHandler(this.label1_Click_2);
+            this.ConsoleText.AcceptsReturn = true;
+            this.ConsoleText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(108)))), ((int)(((byte)(183)))));
+            this.ConsoleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ConsoleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConsoleText.ForeColor = System.Drawing.SystemColors.Info;
+            this.ConsoleText.Location = new System.Drawing.Point(0, 1);
+            this.ConsoleText.Multiline = true;
+            this.ConsoleText.Name = "ConsoleText";
+            this.ConsoleText.ReadOnly = true;
+            this.ConsoleText.Size = new System.Drawing.Size(289, 391);
+            this.ConsoleText.TabIndex = 0;
             // 
-            // panel2
+            // panel8
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(158)))));
-            this.panel2.Controls.Add(this.LogoIMG);
-            this.panel2.Controls.Add(this.LogoTXT);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(290, 38);
-            this.panel2.TabIndex = 3;
-            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
-            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(158)))));
+            this.panel8.Controls.Add(this.ReleaseLabel);
+            this.panel8.Controls.Add(this.changelog);
+            this.panel8.Location = new System.Drawing.Point(0, 550);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(290, 38);
+            this.panel8.TabIndex = 4;
+            // 
+            // ReleaseLabel
+            // 
+            this.ReleaseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ReleaseLabel.AutoSize = true;
+            this.ReleaseLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ReleaseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReleaseLabel.ForeColor = System.Drawing.Color.Cornsilk;
+            this.ReleaseLabel.Location = new System.Drawing.Point(1, 11);
+            this.ReleaseLabel.Name = "ReleaseLabel";
+            this.ReleaseLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ReleaseLabel.Size = new System.Drawing.Size(149, 17);
+            this.ReleaseLabel.TabIndex = 25;
+            this.ReleaseLabel.Text = "Release yyyy.mm.dd.v";
+            this.ReleaseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ReleaseLabel.Click += new System.EventHandler(this.ViewChangelog);
+            // 
+            // changelog
+            // 
+            this.changelog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.changelog.FlatAppearance.BorderSize = 0;
+            this.changelog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.changelog.Font = new System.Drawing.Font("HoloLens MDL2 Assets", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.changelog.ForeColor = System.Drawing.Color.Cornsilk;
+            this.changelog.Location = new System.Drawing.Point(158, 6);
+            this.changelog.Name = "changelog";
+            this.changelog.Size = new System.Drawing.Size(129, 26);
+            this.changelog.TabIndex = 28;
+            this.changelog.Text = "What\'s New?";
+            this.changelog.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.changelog.UseVisualStyleBackColor = false;
+            this.changelog.Click += new System.EventHandler(this.changelog_Click);
+            // 
+            // InstalledPage
+            // 
+            this.InstalledPage.AutoSize = true;
+            this.InstalledPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.InstalledPage.Font = new System.Drawing.Font("Microsoft YaHei", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InstalledPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.InstalledPage.Location = new System.Drawing.Point(0, 101);
+            this.InstalledPage.Name = "InstalledPage";
+            this.InstalledPage.Padding = new System.Windows.Forms.Padding(108, 15, 108, 15);
+            this.InstalledPage.Size = new System.Drawing.Size(299, 54);
+            this.InstalledPage.TabIndex = 27;
+            this.InstalledPage.Tag = "2";
+            this.InstalledPage.Text = "Installed";
+            this.InstalledPage.Click += new System.EventHandler(this.Label2_Click);
+            // 
+            // InstallPage
+            // 
+            this.InstallPage.AutoSize = true;
+            this.InstallPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.InstallPage.Font = new System.Drawing.Font("Microsoft YaHei", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InstallPage.ForeColor = System.Drawing.Color.White;
+            this.InstallPage.Location = new System.Drawing.Point(1, 45);
+            this.InstallPage.Name = "InstallPage";
+            this.InstallPage.Padding = new System.Windows.Forms.Padding(108, 15, 108, 15);
+            this.InstallPage.Size = new System.Drawing.Size(294, 54);
+            this.InstallPage.TabIndex = 26;
+            this.InstallPage.Tag = "2";
+            this.InstallPage.Text = "Installer";
+            this.InstallPage.Click += new System.EventHandler(this.label1_Click_2);
+            // 
+            // TitlePanel
+            // 
+            this.TitlePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(158)))));
+            this.TitlePanel.Controls.Add(this.LogoIMG);
+            this.TitlePanel.Controls.Add(this.LogoTXT);
+            this.TitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TitlePanel.Location = new System.Drawing.Point(0, 0);
+            this.TitlePanel.Name = "TitlePanel";
+            this.TitlePanel.Size = new System.Drawing.Size(290, 38);
+            this.TitlePanel.TabIndex = 3;
+            this.TitlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
+            this.TitlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
             // 
             // LogoIMG
             // 
@@ -166,42 +239,26 @@
             // 
             this.LogoTXT.AutoSize = true;
             this.LogoTXT.BackColor = System.Drawing.Color.Transparent;
-            this.LogoTXT.Font = new System.Drawing.Font("MS Outlook", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoTXT.Font = new System.Drawing.Font("MS Outlook", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoTXT.ForeColor = System.Drawing.Color.White;
             this.LogoTXT.Location = new System.Drawing.Point(41, 9);
             this.LogoTXT.Name = "LogoTXT";
-            this.LogoTXT.Size = new System.Drawing.Size(213, 19);
+            this.LogoTXT.Size = new System.Drawing.Size(229, 19);
             this.LogoTXT.TabIndex = 2;
             this.LogoTXT.Text = "Total Miner: Forge Simplifier";
             this.LogoTXT.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
             this.LogoTXT.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
             // 
-            // ReleaseLabel
-            // 
-            this.ReleaseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReleaseLabel.AutoSize = true;
-            this.ReleaseLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ReleaseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReleaseLabel.ForeColor = System.Drawing.Color.Cornsilk;
-            this.ReleaseLabel.Location = new System.Drawing.Point(181, 562);
-            this.ReleaseLabel.Name = "ReleaseLabel";
-            this.ReleaseLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ReleaseLabel.Size = new System.Drawing.Size(111, 13);
-            this.ReleaseLabel.TabIndex = 25;
-            this.ReleaseLabel.Text = "Release yyyy.mm.dd.v";
-            this.ReleaseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ReleaseLabel.Click += new System.EventHandler(this.ViewChangelog);
-            // 
             // SettingsBTN
             // 
             this.SettingsBTN.AutoSize = true;
             this.SettingsBTN.BackColor = System.Drawing.Color.Transparent;
-            this.SettingsBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.SettingsBTN.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.SettingsBTN.ForeColor = System.Drawing.Color.White;
-            this.SettingsBTN.Location = new System.Drawing.Point(12, 1);
+            this.SettingsBTN.Location = new System.Drawing.Point(3, 4);
             this.SettingsBTN.Name = "SettingsBTN";
             this.SettingsBTN.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
-            this.SettingsBTN.Size = new System.Drawing.Size(59, 21);
+            this.SettingsBTN.Size = new System.Drawing.Size(70, 22);
             this.SettingsBTN.TabIndex = 25;
             this.SettingsBTN.Text = " Settings ";
             this.SettingsBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -211,12 +268,12 @@
             // 
             this.HelpBTN.AutoSize = true;
             this.HelpBTN.BackColor = System.Drawing.Color.Transparent;
-            this.HelpBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.HelpBTN.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.HelpBTN.ForeColor = System.Drawing.Color.White;
-            this.HelpBTN.Location = new System.Drawing.Point(71, 1);
+            this.HelpBTN.Location = new System.Drawing.Point(68, 4);
             this.HelpBTN.Name = "HelpBTN";
             this.HelpBTN.Padding = new System.Windows.Forms.Padding(2, 1, 0, 9);
-            this.HelpBTN.Size = new System.Drawing.Size(41, 25);
+            this.HelpBTN.Size = new System.Drawing.Size(46, 26);
             this.HelpBTN.TabIndex = 20;
             this.HelpBTN.Text = " Help ";
             this.HelpBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -228,14 +285,14 @@
             // 
             this.Minimize.AutoSize = true;
             this.Minimize.BackColor = System.Drawing.Color.Transparent;
-            this.Minimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.Minimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.Minimize.ForeColor = System.Drawing.Color.White;
-            this.Minimize.Location = new System.Drawing.Point(112, 1);
+            this.Minimize.Location = new System.Drawing.Point(109, 1);
             this.Minimize.Name = "Minimize";
             this.Minimize.Padding = new System.Windows.Forms.Padding(2, 0, 0, 5);
-            this.Minimize.Size = new System.Drawing.Size(27, 25);
+            this.Minimize.Size = new System.Drawing.Size(33, 25);
             this.Minimize.TabIndex = 19;
-            this.Minimize.Text = " - ";
+            this.Minimize.Text = " _ ";
             this.Minimize.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Minimize.Click += new System.EventHandler(this.minimize_Click_1);
             this.Minimize.MouseLeave += new System.EventHandler(this.Minimize_MouseLeave);
@@ -289,10 +346,10 @@
             // ProgressBar
             // 
             this.ProgressBar.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.ProgressBar.Location = new System.Drawing.Point(292, 73);
+            this.ProgressBar.Location = new System.Drawing.Point(290, 575);
             this.ProgressBar.Maximum = 5;
             this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(813, 4);
+            this.ProgressBar.Size = new System.Drawing.Size(837, 10);
             this.ProgressBar.Step = 0;
             this.ProgressBar.TabIndex = 10;
             // 
@@ -301,8 +358,8 @@
             this.StatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.StatusLabel.AutoSize = true;
             this.StatusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.StatusLabel.ForeColor = System.Drawing.Color.Lime;
-            this.StatusLabel.Location = new System.Drawing.Point(825, 57);
+            this.StatusLabel.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.StatusLabel.Location = new System.Drawing.Point(830, 57);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(37, 13);
             this.StatusLabel.TabIndex = 11;
@@ -321,18 +378,18 @@
             this.Downloads,
             this.Size,
             this.Author});
-            this.ItemView.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItemView.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItemView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.ItemView.FullRowSelect = true;
             this.ItemView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.ItemView.HoverSelection = true;
-            listViewItem5.StateImageIndex = 0;
+            listViewItem1.StateImageIndex = 0;
             this.ItemView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5});
-            this.ItemView.Location = new System.Drawing.Point(290, 77);
+            listViewItem1});
+            this.ItemView.Location = new System.Drawing.Point(293, 77);
             this.ItemView.MultiSelect = false;
             this.ItemView.Name = "ItemView";
-            this.ItemView.Size = new System.Drawing.Size(815, 498);
+            this.ItemView.Size = new System.Drawing.Size(837, 501);
             this.ItemView.TabIndex = 17;
             this.ItemView.UseCompatibleStateImageBehavior = false;
             this.ItemView.View = System.Windows.Forms.View.Details;
@@ -342,32 +399,32 @@
             // Title
             // 
             this.Title.Text = "Title";
-            this.Title.Width = 261;
+            this.Title.Width = 280;
             // 
             // Rating
             // 
             this.Rating.Text = "Rating";
-            this.Rating.Width = 62;
+            this.Rating.Width = 70;
             // 
             // Views
             // 
             this.Views.Text = "Views";
-            this.Views.Width = 69;
+            this.Views.Width = 84;
             // 
             // Downloads
             // 
             this.Downloads.Text = "Downloads";
-            this.Downloads.Width = 86;
+            this.Downloads.Width = 80;
             // 
             // Size
             // 
             this.Size.Text = "Size";
-            this.Size.Width = 40;
+            this.Size.Width = 79;
             // 
             // Author
             // 
             this.Author.Text = "Author";
-            this.Author.Width = 292;
+            this.Author.Width = 239;
             // 
             // ReloadBTN
             // 
@@ -387,11 +444,12 @@
             // 
             this.ModTab.AutoSize = true;
             this.ModTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.ModTab.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModTab.ForeColor = System.Drawing.Color.White;
             this.ModTab.Location = new System.Drawing.Point(293, 51);
             this.ModTab.Name = "ModTab";
             this.ModTab.Padding = new System.Windows.Forms.Padding(4);
-            this.ModTab.Size = new System.Drawing.Size(41, 21);
+            this.ModTab.Size = new System.Drawing.Size(44, 22);
             this.ModTab.TabIndex = 21;
             this.ModTab.Tag = "2";
             this.ModTab.Text = "Mods";
@@ -401,11 +459,12 @@
             // 
             this.MapTab.AutoSize = true;
             this.MapTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.MapTab.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MapTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.MapTab.Location = new System.Drawing.Point(335, 51);
             this.MapTab.Name = "MapTab";
             this.MapTab.Padding = new System.Windows.Forms.Padding(4);
-            this.MapTab.Size = new System.Drawing.Size(48, 21);
+            this.MapTab.Size = new System.Drawing.Size(52, 22);
             this.MapTab.TabIndex = 22;
             this.MapTab.Tag = "3";
             this.MapTab.Text = "Worlds";
@@ -415,29 +474,30 @@
             // 
             this.ComTab.AutoSize = true;
             this.ComTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.ComTab.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ComTab.Location = new System.Drawing.Point(384, 51);
             this.ComTab.Name = "ComTab";
             this.ComTab.Padding = new System.Windows.Forms.Padding(4);
-            this.ComTab.Size = new System.Drawing.Size(74, 21);
+            this.ComTab.Size = new System.Drawing.Size(81, 22);
             this.ComTab.TabIndex = 23;
             this.ComTab.Tag = "5";
             this.ComTab.Text = "Components";
             this.ComTab.Click += new System.EventHandler(this.ComTab_Click);
             // 
-            // pictureBox1
+            // DownloadBTN
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(488, 47);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(3);
-            this.pictureBox1.Size = new System.Drawing.Size(27, 27);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.Install_Click);
+            this.DownloadBTN.BackColor = System.Drawing.Color.Transparent;
+            this.DownloadBTN.Image = ((System.Drawing.Image)(resources.GetObject("DownloadBTN.Image")));
+            this.DownloadBTN.Location = new System.Drawing.Point(488, 47);
+            this.DownloadBTN.Margin = new System.Windows.Forms.Padding(0);
+            this.DownloadBTN.Name = "DownloadBTN";
+            this.DownloadBTN.Padding = new System.Windows.Forms.Padding(3);
+            this.DownloadBTN.Size = new System.Drawing.Size(27, 27);
+            this.DownloadBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DownloadBTN.TabIndex = 24;
+            this.DownloadBTN.TabStop = false;
+            this.DownloadBTN.Click += new System.EventHandler(this.Install_Click);
             // 
             // SettingsStrip
             // 
@@ -486,15 +546,17 @@
             this.panel3.Size = new System.Drawing.Size(2, 575);
             this.panel3.TabIndex = 28;
             // 
-            // panel4
+            // LocationPanel
             // 
-            this.panel4.Controls.Add(this.LocationTextbox);
-            this.panel4.Controls.Add(this.BrowseBTN);
-            this.panel4.Controls.Add(this.LocationLabel);
-            this.panel4.Location = new System.Drawing.Point(292, 2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(637, 47);
-            this.panel4.TabIndex = 28;
+            this.LocationPanel.Controls.Add(this.LocationTextbox);
+            this.LocationPanel.Controls.Add(this.BrowseBTN);
+            this.LocationPanel.Controls.Add(this.LocationLabel);
+            this.LocationPanel.Location = new System.Drawing.Point(292, 2);
+            this.LocationPanel.Name = "LocationPanel";
+            this.LocationPanel.Size = new System.Drawing.Size(637, 47);
+            this.LocationPanel.TabIndex = 28;
+            this.LocationPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
+            this.LocationPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
             // 
             // panel6
             // 
@@ -503,19 +565,19 @@
             this.panel6.Controls.Add(this.SettingsBTN);
             this.panel6.Controls.Add(this.Minimize);
             this.panel6.Controls.Add(this.HelpBTN);
-            this.panel6.Location = new System.Drawing.Point(935, 0);
+            this.panel6.Location = new System.Drawing.Point(957, 0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(170, 26);
             this.panel6.TabIndex = 28;
             this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
-            // panel7
+            // LineSperator
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.panel7.Location = new System.Drawing.Point(935, -2);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(2, 28);
-            this.panel7.TabIndex = 28;
+            this.LineSperator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.LineSperator.Location = new System.Drawing.Point(957, 0);
+            this.LineSperator.Name = "LineSperator";
+            this.LineSperator.Size = new System.Drawing.Size(2, 28);
+            this.LineSperator.TabIndex = 28;
             // 
             // TMFS
             // 
@@ -523,22 +585,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(180)))));
-            this.ClientSize = new System.Drawing.Size(1105, 575);
-            this.Controls.Add(this.panel7);
+            this.ClientSize = new System.Drawing.Size(1127, 588);
+            this.Controls.Add(this.LineSperator);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.LocationPanel);
             this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.SettingsStrip);
             this.Controls.Add(this.ReloadBTN);
             this.Controls.Add(this.ProgressBar);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.DownloadBTN);
             this.Controls.Add(this.MapTab);
             this.Controls.Add(this.ItemView);
             this.Controls.Add(this.ComTab);
             this.Controls.Add(this.ModTab);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.Pages);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -548,17 +610,21 @@
             this.Load += new System.EventHandler(this.TMFS_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.Pages.ResumeLayout(false);
+            this.Pages.PerformLayout();
+            this.ConsolePanel.ResumeLayout(false);
+            this.ConsolePanel.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.TitlePanel.ResumeLayout(false);
+            this.TitlePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DownloadBTN)).EndInit();
             this.SettingsStrip.ResumeLayout(false);
             this.SettingsStrip.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.LocationPanel.ResumeLayout(false);
+            this.LocationPanel.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.ResumeLayout(false);
@@ -569,7 +635,7 @@
         #endregion
 
         private System.Windows.Forms.Label ExitBTN;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Pages;
         private System.Windows.Forms.Label LogoTXT;
         private System.Windows.Forms.PictureBox LogoIMG;
         private System.Windows.Forms.TextBox LocationTextbox;
@@ -591,20 +657,24 @@
         private System.Windows.Forms.Label ModTab;
         private System.Windows.Forms.Label MapTab;
         private System.Windows.Forms.Label ComTab;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox DownloadBTN;
         private System.Windows.Forms.Label SettingsBTN;
         private System.Windows.Forms.Label ReleaseLabel;
         private System.Windows.Forms.MenuStrip SettingsStrip;
         private System.Windows.Forms.ToolStripComboBox SortSET;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel TitlePanel;
         private System.Windows.Forms.TextBox SearchBar;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label InstalledPage;
+        private System.Windows.Forms.Label InstallPage;
+        private System.Windows.Forms.Panel LocationPanel;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel LineSperator;
+        private System.Windows.Forms.Button changelog;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel ConsolePanel;
+        private System.Windows.Forms.TextBox ConsoleText;
     }
 }
 

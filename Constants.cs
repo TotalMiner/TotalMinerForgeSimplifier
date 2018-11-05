@@ -8,7 +8,20 @@ namespace TMF_Simplifier
 {
     public class Constants
     {
-        public const string Version = "2018.01.12.0";
-        public const string ChangeLog = "";
+        public const string Version = "2018.11.5.1";
+        public static readonly string[] ChangeLog = {
+            "-You can delete installed files",
+            "-New console/error log",
+            "-Crash fixes",
+            "-Theme changes",
+            "-Fixed window grabber missing area",
+            "-Fixed page switching",
+            "-Fixed search on Isntalled page",
+            "-Fixed refresh on installed page",
+            "",
+            "Thanks for 250+ downloads!"
+
+        };
+        
     }
 }
