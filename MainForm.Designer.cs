@@ -607,7 +607,7 @@
             this.MainMenuStrip = this.SettingsStrip;
             this.Name = "TMFS";
             this.Text = "Total Miner: Forge Simplifier";
-            this.Load += new System.EventHandler(this.TMFS_Load);
+            this.Load += new System.EventHandler(this.TMFS_LoadAsync);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
             this.Pages.ResumeLayout(false);

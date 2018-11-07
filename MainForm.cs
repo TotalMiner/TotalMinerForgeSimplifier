@@ -141,7 +141,7 @@ namespace TMF_Simplifier
             
         }
 
-        private void TMFS_Load(object sender, EventArgs e)
+        private async void TMFS_LoadAsync(object sender, EventArgs e)
         {
 #if DEBUG
             Console.WriteLine("In debug, not checking for updates.");
