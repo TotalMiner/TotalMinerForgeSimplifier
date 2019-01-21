@@ -24,10 +24,22 @@ namespace TMF_Simplifier
     public partial class TMFS : Form
     {
         public static TMFS Instance;
-        public static int Category;
+
+        public enum Categories
+        {
+            mod = 2,
+            map = 3,
+            com = 5
+
+        }
+        public static Categories Category = Categories.mod;
+
         public static List<int>[] Ids;
+
         static readonly string TotalMinerMain = Path.Combine(new[] { Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "TotalMiner" });
+
         private string ExtractLocation;
+
         string Status
         {
             get
@@ -91,7 +103,7 @@ namespace TMF_Simplifier
                 "7z.dll"));
 
 
-            Category = 2;
+            Category = Categories.mod;
             ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
             Status = "Mod";
             LoadContent();
@@ -203,7 +215,7 @@ namespace TMF_Simplifier
         private void LoadContent()
         {
                 ItemView.Items.Clear();
-                Task.Factory.StartNew(() => Scraper.Scrape(Category, 1));
+                Task.Factory.StartNew(() => Scraper.Scrape((int)Category, 1));
         }
 
         delegate void AddRowCallback(ListViewItem row);
@@ -238,7 +250,7 @@ namespace TMF_Simplifier
         {
             if (FunctionTab == 0)
             {
-                string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[Category][ItemView.SelectedItems[0].Index];
+                string url = "http://totalminerforums.net/index.php?action=downloads;sa=downfile&id=" + Ids[(int)Category][ItemView.SelectedItems[0].Index];
                 LocationTextbox.Text = url;
             }
             else if (FunctionTab == 1)
@@ -414,7 +426,7 @@ namespace TMF_Simplifier
         private void ModTab_Click(object sender, EventArgs e)
         {
 
-            Category = 2;
+            Category = Categories.mod;
                 ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
             StatusLabel.ForeColor = Color.LightSeaGreen;
 
@@ -443,7 +455,7 @@ namespace TMF_Simplifier
 
         private void MapTab_Click(object sender, EventArgs e)
         {
-            Category = 3;
+            Category = Categories.map;
             ExtractLocation = Path.Combine(TotalMinerMain, "Maps");
             StatusLabel.ForeColor = Color.LightSeaGreen;
 
@@ -472,7 +484,7 @@ namespace TMF_Simplifier
 
         private void ComTab_Click(object sender, EventArgs e)
         {
-                Category = 5;
+                Category = Categories.com;
                 ExtractLocation = Path.Combine(TotalMinerMain, "Com");
             StatusLabel.ForeColor = Color.LightSeaGreen;
                 ModTab.BackColor = ButtonTheme;
