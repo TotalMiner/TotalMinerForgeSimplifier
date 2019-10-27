@@ -37,7 +37,7 @@ namespace TMF_Simplifier
         public static List<int>[] Ids;
 
         static readonly string TotalMinerMain = Path.Combine(new[] { Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "TotalMiner" });
-
+        
         private string ExtractLocation;
 
         string Status
@@ -477,11 +477,290 @@ namespace TMF_Simplifier
                 ItemView.Items.Clear();
                 foreach (string item in Downloads)
                 {
-                    ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
+                    
+                    SaveGameFileInfo saveGame = new SaveGameFileInfo(MapType.Map);
+                    try
+                    {
+                        saveGame.DirNumber = Convert.ToInt32(item.Replace($"{ExtractLocation}\\", ""));
+
+                        saveGame.Header = LoadMapHeader(item+"\\header.dat");
+                        ConsoleText.Text += $"   [{item}]OK   ";
+                    }
+                    catch (Exception err)
+                    {
+                        saveGame.Header.MapName = "err";
+                        ConsoleText.Text += $"   [{item}]BAD   ";
+                    }
+
+                    ItemView.Items.Add($"\n {saveGame.Header.MapName} | ({item.Replace($"{ExtractLocation}\\", "")})");
                 }
             }
         }
+        public static SaveMapHead LoadMapHeader(string filename)
+        {
+            Console.WriteLine(filename);
+            byte[] array = ReadFileIntoBuffer(filename);
+            SaveMapHead saveMapHead = LoadMapHeader(array);
+            return saveMapHead;
+        }
 
+        public static SaveMapHead LoadMapHeader(Stream stream)
+        {
+            using (BinaryReader reader = new BinaryReader(stream))
+            {
+                return ReadMapHeader(reader);
+            }
+        }
+
+        public static SaveMapHead LoadMapHeader(byte[] data)
+        {
+            using (MemoryStream stream = new MemoryStream(data))
+            {
+                return LoadMapHeader(stream);
+            }
+        }
+
+        private static SaveMapHead ReadMapHeader(BinaryReader reader)
+        {
+            SaveMapHead saveMapHead = new SaveMapHead();
+            int num = saveMapHead.SaveVersion = reader.ReadInt32();
+            saveMapHead.ExeVersion = reader.ReadInt32();
+            if (num > 35)
+            {
+                saveMapHead.CreatedVersion = reader.ReadInt32();
+            }
+            saveMapHead.MapName = Globals2.StripBadChars(reader.ReadString());
+            saveMapHead.OwnerGamerTag = Globals2.StripBadChars(reader.ReadString());
+            saveMapHead.DateCreated = reader.ReadInt64();
+            if (num > 134 && num < 211)
+            {
+                reader.ReadByte();
+            }
+            if (num > 208)
+            {
+            }
+            else
+            {
+                saveMapHead.DateSaved = saveMapHead.DateCreated;
+                if (num > 39)
+                {
+                    reader.ReadInt32();
+                }
+            }
+            if (num > 31)
+            {
+                saveMapHead.IsAutoSave = reader.ReadBoolean();
+            }
+            if (num > 54)
+            {
+                if (num > 216)
+                {
+                }
+                else
+                {
+                }
+            }
+            else
+            {
+            }
+            saveMapHead.MapSeed = reader.ReadInt32();
+            saveMapHead.GameType = reader.ReadInt32();
+            saveMapHead.HoursSlept = reader.ReadInt32();
+            if (num > 21)
+            {
+                saveMapHead.RatingCount = reader.ReadInt32() / 144;
+            }
+            saveMapHead.UnusedInt1 = reader.ReadInt32();
+            saveMapHead.DepthReached = reader.ReadInt32();
+            if (num > 21)
+            {
+            }
+            if (num > 21)
+            {
+                saveMapHead.RatingStars = reader.ReadSingle() / 4498.25f;
+            }
+            if (num > 20)
+            {
+            }
+            if (num > 23)
+            {
+                saveMapHead.PvPCombat = reader.ReadBoolean();
+            }
+            else
+            {
+                saveMapHead.PvPCombat = true;
+            }
+            if (num > 24)
+            {
+                saveMapHead.CombatEnabled = reader.ReadBoolean();
+            }
+            else
+            {
+            }
+            if (num > 24)
+            {
+                saveMapHead.FiniteMode = reader.ReadBoolean();
+            }
+            else
+            {
+            }
+            if (num > 118)
+            {
+                saveMapHead.PassiveMobs = reader.ReadBoolean();
+            }
+            else
+            {
+                saveMapHead.PassiveMobs = true;
+            }
+            if (num > 148)
+            {
+                saveMapHead.EnemyMobs = reader.ReadBoolean();
+            }
+            else
+            {
+            }
+            if (num > 128)
+            {
+                saveMapHead.KeepItemsOnDeath = reader.ReadBoolean();
+            }
+            else
+            {
+                saveMapHead.KeepItemsOnDeath = false;
+            }
+            if (num > 107)
+            {
+                saveMapHead.SkillsEnabled = reader.ReadBoolean();
+            }
+            else
+            {
+                saveMapHead.SkillsEnabled = false;
+            }
+            if (num > 192)
+            {
+                saveMapHead.SkillsLocal = reader.ReadBoolean();
+            }
+            else
+            {
+                saveMapHead.SkillsLocal = false;
+            }
+            if (num > 192)
+            {
+                saveMapHead.XPMultiplier = reader.ReadSingle();
+            }
+            else
+            {
+                saveMapHead.XPMultiplier = 1f;
+            }
+            if (num > 24)
+            {
+                saveMapHead.DayNightActive = reader.ReadBoolean();
+            }
+            else
+            {
+                saveMapHead.DayNightActive = true;
+            }
+            if (num < 54)
+            {
+                saveMapHead.DayNightActive = true;
+            }
+            if (num > 213)
+            {
+                saveMapHead.WeatherActive = reader.ReadBoolean();
+            }
+            else
+            {
+                saveMapHead.WeatherActive = true;
+            }
+            if (num > 232)
+            {
+                saveMapHead.WindFactor = reader.ReadSingle();
+            }
+            else
+            {
+                saveMapHead.WindFactor = 1f;
+            }
+            if (num > 75)
+            {
+                saveMapHead.UnusedByte1 = reader.ReadByte();
+            }
+            else
+            {
+                saveMapHead.UnusedByte1 = 0;
+            }
+            if (num > 76)
+            {
+                saveMapHead.DaysIntoGame = reader.ReadInt32();
+            }
+            else
+            {
+                saveMapHead.DaysIntoGame = 0;
+            }
+            if (num > 34)
+            {
+            }
+            else
+            {
+            }
+            if (num < 231)
+            {
+            }
+            if (num > 121)
+            {
+                saveMapHead.MaxPlayers = reader.ReadInt32();
+            }
+            else
+            {
+                saveMapHead.MaxPlayers = 16;
+            }
+            if (num > 121)
+            {
+                saveMapHead.PrivateSlots = reader.ReadInt32();
+            }
+            else
+            {
+                saveMapHead.PrivateSlots = 0;
+            }
+            if (num > 184)
+            {
+                saveMapHead.CombatLevelDifference = reader.ReadInt16();
+            }
+            else
+            {
+                saveMapHead.CombatLevelDifference = 7;
+            }
+            if (num > 244)
+            {
+                saveMapHead.ClanProtection = reader.ReadBoolean();
+            }
+            else
+            {
+                saveMapHead.ClanProtection = true;
+            }
+            if (num > 22)
+            {
+                saveMapHead.TexturePack = Globals2.StripBadChars(reader.ReadString(), true);
+            }
+            if (num > 182)
+            {
+            }
+            if (num > 275)
+            {
+            }
+            return saveMapHead;
+        }
+        private static byte[] ReadFileIntoBuffer(string filename)
+        {
+            if (FileSystem.IsFileExist(filename))
+            {
+                using (Stream stream = FileSystem.OpenRead(filename))
+                {
+                    byte[] array = new byte[stream.Length];
+                    stream.Read(array, 0, array.Length);
+                    return array;
+                }
+            }
+            return null;
+        }
         private void ComTab_Click(object sender, EventArgs e)
         {
                 Category = Categories.com;
@@ -504,6 +783,7 @@ namespace TMF_Simplifier
                 ItemView.Items.Clear();
                 foreach (string item in Downloads)
                 {
+
                     ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
                 }
             }

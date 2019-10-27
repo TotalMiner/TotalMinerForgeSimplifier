@@ -128,14 +128,17 @@
             // ConsoleText
             // 
             this.ConsoleText.AcceptsReturn = true;
+            this.ConsoleText.AcceptsTab = true;
             this.ConsoleText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(108)))), ((int)(((byte)(183)))));
             this.ConsoleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ConsoleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConsoleText.ForeColor = System.Drawing.SystemColors.Info;
             this.ConsoleText.Location = new System.Drawing.Point(0, 1);
+            this.ConsoleText.MaxLength = 10000000;
             this.ConsoleText.Multiline = true;
             this.ConsoleText.Name = "ConsoleText";
             this.ConsoleText.ReadOnly = true;
+            this.ConsoleText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ConsoleText.Size = new System.Drawing.Size(289, 391);
             this.ConsoleText.TabIndex = 0;
             // 
@@ -239,11 +242,11 @@
             // 
             this.LogoTXT.AutoSize = true;
             this.LogoTXT.BackColor = System.Drawing.Color.Transparent;
-            this.LogoTXT.Font = new System.Drawing.Font("MS Outlook", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoTXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoTXT.ForeColor = System.Drawing.Color.White;
             this.LogoTXT.Location = new System.Drawing.Point(41, 9);
             this.LogoTXT.Name = "LogoTXT";
-            this.LogoTXT.Size = new System.Drawing.Size(229, 19);
+            this.LogoTXT.Size = new System.Drawing.Size(250, 20);
             this.LogoTXT.TabIndex = 2;
             this.LogoTXT.Text = "Total Miner: Forge Simplifier";
             this.LogoTXT.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
@@ -253,12 +256,12 @@
             // 
             this.SettingsBTN.AutoSize = true;
             this.SettingsBTN.BackColor = System.Drawing.Color.Transparent;
-            this.SettingsBTN.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.SettingsBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.SettingsBTN.ForeColor = System.Drawing.Color.White;
             this.SettingsBTN.Location = new System.Drawing.Point(3, 4);
             this.SettingsBTN.Name = "SettingsBTN";
             this.SettingsBTN.Padding = new System.Windows.Forms.Padding(2, 1, 0, 5);
-            this.SettingsBTN.Size = new System.Drawing.Size(70, 22);
+            this.SettingsBTN.Size = new System.Drawing.Size(59, 21);
             this.SettingsBTN.TabIndex = 25;
             this.SettingsBTN.Text = " Settings ";
             this.SettingsBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -268,12 +271,12 @@
             // 
             this.HelpBTN.AutoSize = true;
             this.HelpBTN.BackColor = System.Drawing.Color.Transparent;
-            this.HelpBTN.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.HelpBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.HelpBTN.ForeColor = System.Drawing.Color.White;
             this.HelpBTN.Location = new System.Drawing.Point(68, 4);
             this.HelpBTN.Name = "HelpBTN";
             this.HelpBTN.Padding = new System.Windows.Forms.Padding(2, 1, 0, 9);
-            this.HelpBTN.Size = new System.Drawing.Size(46, 26);
+            this.HelpBTN.Size = new System.Drawing.Size(41, 25);
             this.HelpBTN.TabIndex = 20;
             this.HelpBTN.Text = " Help ";
             this.HelpBTN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -314,11 +317,11 @@
             // LocationLabel
             // 
             this.LocationLabel.AutoSize = true;
-            this.LocationLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LocationLabel.ForeColor = System.Drawing.Color.White;
             this.LocationLabel.Location = new System.Drawing.Point(2, 1);
             this.LocationLabel.Name = "LocationLabel";
-            this.LocationLabel.Size = new System.Drawing.Size(96, 15);
+            this.LocationLabel.Size = new System.Drawing.Size(81, 13);
             this.LocationLabel.TabIndex = 6;
             this.LocationLabel.Text = "Location (none)";
             // 
@@ -382,6 +385,7 @@
             this.ItemView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.ItemView.FullRowSelect = true;
             this.ItemView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.ItemView.HideSelection = false;
             this.ItemView.HoverSelection = true;
             listViewItem1.StateImageIndex = 0;
             this.ItemView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
@@ -668,7 +672,6 @@
         private System.Windows.Forms.Label InstalledPage;
         private System.Windows.Forms.Label InstallPage;
         private System.Windows.Forms.Panel LocationPanel;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel LineSperator;
         private System.Windows.Forms.Button changelog;

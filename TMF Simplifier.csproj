@@ -100,8 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="FileSystem.cs" />
     <Compile Include="Github\Asset.cs" />
     <Compile Include="Github\Author.cs" />
+    <Compile Include="Globals2.cs" />
     <Compile Include="HelpPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,9 +116,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Github\Release.cs" />
+    <Compile Include="SaveGameFileInfo.cs" />
+    <Compile Include="SaveMapHead.cs" />
     <Compile Include="Scraper.cs" />
     <Compile Include="Github\Uploader.cs" />
     <Compile Include="Updater.cs" />
