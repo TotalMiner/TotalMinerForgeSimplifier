@@ -481,18 +481,17 @@ namespace TMF_Simplifier
                     SaveGameFileInfo saveGame = new SaveGameFileInfo(MapType.Map);
                     try
                     {
-                        saveGame.DirNumber = Convert.ToInt32(item.Replace($"{ExtractLocation}\\", ""));
-
                         saveGame.Header = LoadMapHeader(item+"\\header.dat");
-                        ConsoleText.Text += $"   [{item}]OK   ";
                     }
                     catch (Exception err)
                     {
                         saveGame.Header.MapName = "err";
-                        ConsoleText.Text += $"   [{item}]BAD   ";
                     }
 
-                    ItemView.Items.Add($"\n {saveGame.Header.MapName} | ({item.Replace($"{ExtractLocation}\\", "")})");
+                    string[] row = { $" {saveGame.Header.MapName} | ({item.Replace($"{ ExtractLocation }\\", "")})", $"{string.Format("{0:N1}", saveGame.Header.RatingStars)}/5 of {saveGame.Header.RatingCount}", "N\\A", "N\\A",(Globals2.DirSize(new DirectoryInfo(item)) / 1000).ToString() + "KB", saveGame.Header.OwnerGamerTag };
+                    var listViewItem = new ListViewItem(row);
+                    ItemView.Items.Add(listViewItem);
+                    
                 }
             }
         }
@@ -784,7 +783,7 @@ namespace TMF_Simplifier
                 foreach (string item in Downloads)
                 {
 
-                    ItemView.Items.Add($"\n{item.Replace($"{ExtractLocation}\\", "")}");
+                    ItemView.Items.Add($"\n {Globals2.StripBadChars(File.ReadAllText(item + "\\header.dat"))} | ({item.Replace($"{ExtractLocation}\\", "")})");
                 }
             }
         }
