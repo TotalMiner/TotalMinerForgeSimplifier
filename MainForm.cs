@@ -255,9 +255,18 @@ namespace TMF_Simplifier
             }
             else if (FunctionTab == 1)
             {
-                string ItemSelected = Path.Combine(ExtractLocation , ItemView.SelectedItems[0].SubItems[0].Text.Replace("\n",""));
-                LocationTextbox.Text = ItemSelected;
-                LocationLabel.Text = "Intalled item:";
+                if (Category == Categories.mod)
+                {
+                    string ItemSelected = Path.Combine(ExtractLocation, ItemView.SelectedItems[0].SubItems[0].Text.Replace("\n", ""));
+                    LocationTextbox.Text = ItemSelected;
+                    LocationLabel.Text = "Intalled item:";
+                }
+                else if (Category == Categories.com)
+                {
+                    compview comv = new compview();
+                    comv.Show();
+                    comv.LoadComps($"{ExtractLocation}\\{ItemView.SelectedItems[0].Text.Substring(ItemView.SelectedItems[0].Text.Length - 7).Replace(")", "")}");
+                }
             }
         }
 

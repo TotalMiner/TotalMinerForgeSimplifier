@@ -99,6 +99,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="compview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="compview.Designer.cs">
+      <DependentUpon>compview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="Github\Asset.cs" />
@@ -125,6 +131,9 @@
     <Compile Include="Scraper.cs" />
     <Compile Include="Github\Uploader.cs" />
     <Compile Include="Updater.cs" />
+    <EmbeddedResource Include="compview.resx">
+      <DependentUpon>compview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HelpPage.resx">
       <DependentUpon>HelpPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +148,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -156,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="gai_sv1_icon.ico" />
+    <None Include="Resources\mods.png" />
+    <None Include="Resources\world.png" />
+    <None Include="Resources\comp.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
