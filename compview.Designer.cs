@@ -31,6 +31,8 @@
             this.listView = new System.Windows.Forms.ListView();
             this.comname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comfile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.renderBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.renderBox)).BeginInit();
             this.SuspendLayout();
             // 
             // listView
@@ -58,17 +60,28 @@
             this.comfile.Text = "File";
             this.comfile.Width = 157;
             // 
+            // renderBox
+            // 
+            this.renderBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.renderBox.Location = new System.Drawing.Point(12, 148);
+            this.renderBox.Name = "renderBox";
+            this.renderBox.Size = new System.Drawing.Size(290, 290);
+            this.renderBox.TabIndex = 1;
+            this.renderBox.TabStop = false;
+            // 
             // compview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(180)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.renderBox);
             this.Controls.Add(this.listView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "compview";
             this.Text = "Component Viewer";
             this.Load += new System.EventHandler(this.compview_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.renderBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -78,5 +91,6 @@
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader comname;
         private System.Windows.Forms.ColumnHeader comfile;
+        private System.Windows.Forms.PictureBox renderBox;
     }
 }
