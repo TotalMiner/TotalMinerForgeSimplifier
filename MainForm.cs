@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region Namespaces
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,7 @@ using System.Reflection;
 using TMF_Simplifier.Github;
 using System.Diagnostics;
 using CefSharp;
+#endregion
 
 namespace TMF_Simplifier
 {
