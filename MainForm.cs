@@ -18,6 +18,7 @@ using SevenZip;
 using System.Reflection;
 using TMF_Simplifier.Github;
 using System.Diagnostics;
+using CefSharp;
 
 namespace TMF_Simplifier
 {

@@ -176,9 +176,9 @@
             this.changelog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.changelog.Font = new System.Drawing.Font("HoloLens MDL2 Assets", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.changelog.ForeColor = System.Drawing.Color.Cornsilk;
-            this.changelog.Location = new System.Drawing.Point(158, 6);
+            this.changelog.Location = new System.Drawing.Point(175, 6);
             this.changelog.Name = "changelog";
-            this.changelog.Size = new System.Drawing.Size(129, 26);
+            this.changelog.Size = new System.Drawing.Size(112, 26);
             this.changelog.TabIndex = 28;
             this.changelog.Text = "What\'s New?";
             this.changelog.TextAlign = System.Drawing.ContentAlignment.TopCenter;
