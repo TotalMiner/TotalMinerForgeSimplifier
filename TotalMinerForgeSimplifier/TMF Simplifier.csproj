@@ -162,6 +162,7 @@
     <Compile Include="SaveMapHead.cs" />
     <Compile Include="Scraper.cs" />
     <Compile Include="Github\Uploader.cs" />
+    <Compile Include="Style.cs" />
     <Compile Include="Updater.cs" />
     <EmbeddedResource Include="compview.resx">
       <DependentUpon>compview.cs</DependentUpon>

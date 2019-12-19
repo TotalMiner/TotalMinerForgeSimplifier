@@ -74,6 +74,10 @@ namespace TMF_Simplifier
 
         WebClient Client = new WebClient();
         HelpPage Help;
+
+        Label openPage;
+        Label openTab;
+
         public TMFS()
         {
             CleanDir(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
@@ -106,6 +110,8 @@ namespace TMF_Simplifier
                 "7z.dll"));
 
 
+            openPage = InstallPage;
+            openTab = ModTab;
             Category = Categories.mod;
             ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
             Status = "Mod";
@@ -437,17 +443,14 @@ namespace TMF_Simplifier
 
         private void ModTab_Click(object sender, EventArgs e)
         {
-
             Category = Categories.mod;
                 ExtractLocation = Path.Combine(TotalMinerMain, "Mods");
             StatusLabel.ForeColor = Color.LightSeaGreen;
+            
+            Style.LabelButtonUnselected(openTab);
+            Style.LabelButtonSelected(ModTab);
+            openTab = ModTab;
 
-            ModTab.BackColor = ButtonActiveTheme;
-                MapTab.BackColor = ButtonTheme;
-                ComTab.BackColor = ButtonTheme;
-                ModTab.ForeColor = Color.White;
-                MapTab.ForeColor = DarkText;
-                ComTab.ForeColor = DarkText;
             if (FunctionTab == 0)
             {
                 Status = "Mod";
@@ -465,18 +468,43 @@ namespace TMF_Simplifier
 
         }
 
+        private void ComTab_Click(object sender, EventArgs e)
+        {
+            Category = Categories.com;
+            ExtractLocation = Path.Combine(TotalMinerMain, "Com");
+            StatusLabel.ForeColor = Color.LightSeaGreen;
+            
+            Style.LabelButtonUnselected(openTab);
+            Style.LabelButtonSelected(ComTab);
+            openTab = ComTab;
+
+            if (FunctionTab == 0)
+            {
+                Status = "Component";
+                LoadContent();
+            }
+            else if (FunctionTab == 1)
+            {
+                string[] Downloads = Directory.GetDirectories(ExtractLocation);
+                ItemView.Items.Clear();
+                foreach (string item in Downloads)
+                {
+
+                    ItemView.Items.Add($"\n {Globals2.StripBadChars(File.ReadAllText(item + "\\header.dat"))} | ({item.Replace($"{ExtractLocation}\\", "")})");
+                }
+            }
+        }
+
         private void MapTab_Click(object sender, EventArgs e)
         {
             Category = Categories.map;
             ExtractLocation = Path.Combine(TotalMinerMain, "Maps");
             StatusLabel.ForeColor = Color.LightSeaGreen;
 
-            ModTab.BackColor = ButtonTheme;
-                MapTab.BackColor = ButtonActiveTheme;
-                ComTab.BackColor = ButtonTheme;
-                ModTab.ForeColor = DarkText;
-                MapTab.ForeColor = Color.White;
-                ComTab.ForeColor = DarkText;
+            Style.LabelButtonUnselected(openTab);
+            Style.LabelButtonSelected(MapTab);
+            openTab = MapTab;
+
             if (FunctionTab == 0)
             {
                 
@@ -772,33 +800,6 @@ namespace TMF_Simplifier
             }
             return null;
         }
-        private void ComTab_Click(object sender, EventArgs e)
-        {
-                Category = Categories.com;
-                ExtractLocation = Path.Combine(TotalMinerMain, "Com");
-            StatusLabel.ForeColor = Color.LightSeaGreen;
-                ModTab.BackColor = ButtonTheme;
-                MapTab.BackColor = ButtonTheme;
-                ComTab.BackColor = ButtonActiveTheme;
-                ModTab.ForeColor = DarkText;
-                MapTab.ForeColor = DarkText;
-                ComTab.ForeColor = Color.White;
-            if (FunctionTab == 0)
-            {
-                Status = "Component";
-                LoadContent();
-            }
-            else if (FunctionTab == 1)
-            {
-                string[] Downloads = Directory.GetDirectories(ExtractLocation);
-                ItemView.Items.Clear();
-                foreach (string item in Downloads)
-                {
-
-                    ItemView.Items.Add($"\n {Globals2.StripBadChars(File.ReadAllText(item + "\\header.dat"))} | ({item.Replace($"{ExtractLocation}\\", "")})");
-                }
-            }
-        }
 
         private void SortSET_IndexChanged(object sender, EventArgs e)
         {
@@ -891,11 +892,11 @@ namespace TMF_Simplifier
 
         public void Label2_Click(object sender, EventArgs e)
         {
-            InstalledPage.BackColor = PageSelection;
-            InstallPage.BackColor = ButtonTheme;
 
-            InstallPage.ForeColor = PageSelectionText;
-            InstalledPage.ForeColor = Color.White;
+            Style.LabelButtonUnselected(openPage);
+            Style.LabelButtonSelected(InstalledPage);
+            openPage = InstalledPage;
+
             FunctionTab = 1;
             DownloadPage();
             DownloadBTN.Visible = false;
@@ -921,11 +922,10 @@ namespace TMF_Simplifier
 
         private void label1_Click_2(object sender, EventArgs e)
         {
-            InstalledPage.BackColor = ButtonTheme;
-            InstallPage.BackColor = PageSelection;
-
-            InstallPage.ForeColor = Color.White;
-            InstalledPage.ForeColor = PageSelectionText;
+            Style.LabelButtonUnselected(openPage);
+            Style.LabelButtonSelected(InstallPage);
+            openPage = InstallPage;
+            
             FunctionTab = 0;
             ItemView.Items.Clear();
             LoadContent();
