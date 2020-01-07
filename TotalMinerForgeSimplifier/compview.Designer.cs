@@ -1,4 +1,6 @@
-﻿namespace TMF_Simplifier
+﻿using System;
+
+namespace TMF_Simplifier
 {
     partial class compview
     {
@@ -92,5 +94,11 @@
         private System.Windows.Forms.ColumnHeader comname;
         private System.Windows.Forms.ColumnHeader comfile;
         private System.Windows.Forms.PictureBox renderBox;
+
+        
+        public IntPtr getDrawSurface()
+        {
+            return renderBox.Handle;
+        }
     }
 }

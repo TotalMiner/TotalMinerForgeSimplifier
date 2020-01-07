@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMFS));
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Downloads");
             this.ExitBTN = new System.Windows.Forms.Label();
@@ -58,11 +59,9 @@
             this.Downloads = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ReloadBTN = new System.Windows.Forms.PictureBox();
             this.ModTab = new System.Windows.Forms.Label();
             this.MapTab = new System.Windows.Forms.Label();
             this.ComTab = new System.Windows.Forms.Label();
-            this.DownloadBTN = new System.Windows.Forms.PictureBox();
             this.SettingsStrip = new System.Windows.Forms.MenuStrip();
             this.SortSET = new System.Windows.Forms.ToolStripComboBox();
             this.SearchBar = new System.Windows.Forms.TextBox();
@@ -70,16 +69,20 @@
             this.LocationPanel = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.LineSperator = new System.Windows.Forms.Panel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ReloadBTN = new System.Windows.Forms.PictureBox();
+            this.DownloadBTN = new System.Windows.Forms.PictureBox();
+            this.TestLabel = new System.Windows.Forms.Label();
             this.Pages.SuspendLayout();
             this.ConsolePanel.SuspendLayout();
             this.panel8.SuspendLayout();
             this.TitlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DownloadBTN)).BeginInit();
             this.SettingsStrip.SuspendLayout();
             this.LocationPanel.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DownloadBTN)).BeginInit();
             this.SuspendLayout();
             // 
             // ExitBTN
@@ -141,6 +144,7 @@
             this.ConsoleText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ConsoleText.Size = new System.Drawing.Size(289, 391);
             this.ConsoleText.TabIndex = 0;
+            this.ConsoleText.TextChanged += new System.EventHandler(this.ConsoleText_TextChanged);
             // 
             // panel8
             // 
@@ -204,6 +208,7 @@
             // 
             this.InstallPage.AutoSize = true;
             this.InstallPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.InstallPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InstallPage.Font = new System.Drawing.Font("Microsoft YaHei", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstallPage.ForeColor = System.Drawing.Color.White;
             this.InstallPage.Location = new System.Drawing.Point(1, 45);
@@ -218,6 +223,7 @@
             // TitlePanel
             // 
             this.TitlePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(158)))));
+            this.TitlePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.TitlePanel.Controls.Add(this.LogoIMG);
             this.TitlePanel.Controls.Add(this.LogoTXT);
             this.TitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -373,6 +379,8 @@
             this.ItemView.Alignment = System.Windows.Forms.ListViewAlignment.Default;
             this.ItemView.AllowColumnReorder = true;
             this.ItemView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(201)))), ((int)(((byte)(232)))));
+            this.ItemView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ItemView.BackgroundImage")));
+            this.ItemView.BackgroundImageTiled = true;
             this.ItemView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ItemView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Title,
@@ -381,7 +389,7 @@
             this.Downloads,
             this.Size,
             this.Author});
-            this.ItemView.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItemView.Font = new System.Drawing.Font("Bahnschrift", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItemView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.ItemView.FullRowSelect = true;
             this.ItemView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -430,20 +438,6 @@
             this.Author.Text = "Author";
             this.Author.Width = 239;
             // 
-            // ReloadBTN
-            // 
-            this.ReloadBTN.BackColor = System.Drawing.Color.Transparent;
-            this.ReloadBTN.Image = ((System.Drawing.Image)(resources.GetObject("ReloadBTN.Image")));
-            this.ReloadBTN.Location = new System.Drawing.Point(459, 46);
-            this.ReloadBTN.Margin = new System.Windows.Forms.Padding(6);
-            this.ReloadBTN.Name = "ReloadBTN";
-            this.ReloadBTN.Padding = new System.Windows.Forms.Padding(3);
-            this.ReloadBTN.Size = new System.Drawing.Size(27, 27);
-            this.ReloadBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReloadBTN.TabIndex = 20;
-            this.ReloadBTN.TabStop = false;
-            this.ReloadBTN.Click += new System.EventHandler(this.Reload_Click);
-            // 
             // ModTab
             // 
             this.ModTab.AutoSize = true;
@@ -488,20 +482,6 @@
             this.ComTab.Tag = "5";
             this.ComTab.Text = "Components";
             this.ComTab.Click += new System.EventHandler(this.ComTab_Click);
-            // 
-            // DownloadBTN
-            // 
-            this.DownloadBTN.BackColor = System.Drawing.Color.Transparent;
-            this.DownloadBTN.Image = ((System.Drawing.Image)(resources.GetObject("DownloadBTN.Image")));
-            this.DownloadBTN.Location = new System.Drawing.Point(488, 47);
-            this.DownloadBTN.Margin = new System.Windows.Forms.Padding(0);
-            this.DownloadBTN.Name = "DownloadBTN";
-            this.DownloadBTN.Padding = new System.Windows.Forms.Padding(3);
-            this.DownloadBTN.Size = new System.Drawing.Size(27, 27);
-            this.DownloadBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.DownloadBTN.TabIndex = 24;
-            this.DownloadBTN.TabStop = false;
-            this.DownloadBTN.Click += new System.EventHandler(this.Install_Click);
             // 
             // SettingsStrip
             // 
@@ -583,13 +563,68 @@
             this.LineSperator.Size = new System.Drawing.Size(2, 28);
             this.LineSperator.TabIndex = 28;
             // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 5000;
+            this.toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(108)))), ((int)(((byte)(183)))));
+            this.toolTip.ForeColor = System.Drawing.Color.White;
+            this.toolTip.InitialDelay = 800;
+            this.toolTip.ReshowDelay = 100;
+            // 
+            // ReloadBTN
+            // 
+            this.ReloadBTN.BackColor = System.Drawing.Color.Transparent;
+            this.ReloadBTN.Image = global::TMF_Simplifier.Properties.Resources.ReloadOrange;
+            this.ReloadBTN.Location = new System.Drawing.Point(459, 46);
+            this.ReloadBTN.Margin = new System.Windows.Forms.Padding(6);
+            this.ReloadBTN.Name = "ReloadBTN";
+            this.ReloadBTN.Padding = new System.Windows.Forms.Padding(3);
+            this.ReloadBTN.Size = new System.Drawing.Size(27, 27);
+            this.ReloadBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReloadBTN.TabIndex = 20;
+            this.ReloadBTN.TabStop = false;
+            this.toolTip.SetToolTip(this.ReloadBTN, "Reload");
+            this.ReloadBTN.Click += new System.EventHandler(this.Reload_Click);
+            // 
+            // DownloadBTN
+            // 
+            this.DownloadBTN.BackColor = System.Drawing.Color.Transparent;
+            this.DownloadBTN.Image = global::TMF_Simplifier.Properties.Resources.DownloadOrange;
+            this.DownloadBTN.Location = new System.Drawing.Point(488, 47);
+            this.DownloadBTN.Margin = new System.Windows.Forms.Padding(0);
+            this.DownloadBTN.Name = "DownloadBTN";
+            this.DownloadBTN.Padding = new System.Windows.Forms.Padding(3);
+            this.DownloadBTN.Size = new System.Drawing.Size(27, 27);
+            this.DownloadBTN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DownloadBTN.TabIndex = 24;
+            this.DownloadBTN.TabStop = false;
+            this.toolTip.SetToolTip(this.DownloadBTN, "Download");
+            this.DownloadBTN.Click += new System.EventHandler(this.Install_Click);
+            // 
+            // TestLabel
+            // 
+            this.TestLabel.AutoSize = true;
+            this.TestLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.TestLabel.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TestLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TestLabel.Location = new System.Drawing.Point(878, 51);
+            this.TestLabel.Name = "TestLabel";
+            this.TestLabel.Padding = new System.Windows.Forms.Padding(4);
+            this.TestLabel.Size = new System.Drawing.Size(35, 22);
+            this.TestLabel.TabIndex = 29;
+            this.TestLabel.Tag = "5";
+            this.TestLabel.Text = "Test";
+            this.TestLabel.Click += new System.EventHandler(this.TestLabel_Click);
+            // 
             // TMFS
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(180)))));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1127, 588);
+            this.Controls.Add(this.TestLabel);
             this.Controls.Add(this.LineSperator);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.LocationPanel);
@@ -611,6 +646,7 @@
             this.MainMenuStrip = this.SettingsStrip;
             this.Name = "TMFS";
             this.Text = "Total Miner: Forge Simplifier";
+            this.TransparencyKey = System.Drawing.SystemColors.Info;
             this.Load += new System.EventHandler(this.TMFS_LoadAsync);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_MoveMouse);
@@ -623,14 +659,14 @@
             this.TitlePanel.ResumeLayout(false);
             this.TitlePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIMG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DownloadBTN)).EndInit();
             this.SettingsStrip.ResumeLayout(false);
             this.SettingsStrip.PerformLayout();
             this.LocationPanel.ResumeLayout(false);
             this.LocationPanel.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadBTN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DownloadBTN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -678,6 +714,8 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel ConsolePanel;
         private System.Windows.Forms.TextBox ConsoleText;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label TestLabel;
     }
 }
 

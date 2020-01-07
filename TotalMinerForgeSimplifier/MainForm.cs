@@ -20,6 +20,8 @@ using System.Reflection;
 using TMF_Simplifier.Github;
 using System.Diagnostics;
 using CefSharp;
+using StudioForge.TotalMiner.API;
+using StudioForge.TotalMiner;
 #endregion
 
 namespace TMF_Simplifier
@@ -952,6 +954,26 @@ namespace TMF_Simplifier
             {
                 ConsoleText.Text += Change + Environment.NewLine;
             }
+        }
+
+        private void ConsoleText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        
+
+        private void TestLabel_Click(object sender, EventArgs e)
+        {
+            StreamWriter sr = new StreamWriter("output/BlockTextures64.xml");
+            sr.Write("<?xml version=\"1.0\"?>\n< ArrayOfItemXML xmlns: xsi = \"http://www.w3.org/2001/XMLSchema-instance\" xmlns: xsd = \"http://www.w3.org/2001/XMLSchema\"> \n");
+            foreach (Item blockItem in Enum.GetValues(typeof(Item)))
+            {
+                if (blockItem == Item.zLastBlockID)
+                    break;
+               sr.WriteLine($"  <ItemXML>\n     <ItemID>{blockItem}</ItemID>\n  </ItemXML> ");
+            }
+            sr.WriteLine("</ArrayOfItemXML>");
+            sr.Close();
         }
     }
 }

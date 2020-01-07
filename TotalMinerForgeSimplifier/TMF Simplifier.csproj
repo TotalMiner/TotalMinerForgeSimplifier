@@ -93,6 +93,8 @@
     </Reference>
     <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.11.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -108,6 +110,42 @@
     <Reference Include="Shaman.SevenZipSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c8ff6ba0184838bb, processorArchitecture=MSIL">
       <HintPath>packages\Shaman.SevenZipSharp.1.0.6.3\lib\net45\Shaman.SevenZipSharp.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="StudioForge.BlockWorld">
+      <HintPath>libs\StudioForge\StudioForge.BlockWorld.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Core">
+      <HintPath>libs\StudioForge\StudioForge.Engine.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Game">
+      <HintPath>libs\StudioForge\StudioForge.Engine.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.GamerServices">
+      <HintPath>libs\StudioForge\StudioForge.Engine.GamerServices.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Graphics3D">
+      <HintPath>libs\StudioForge\StudioForge.Engine.Graphics3D.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Graphics3D_Pipeline">
+      <HintPath>libs\StudioForge\StudioForge.Engine.Graphics3D_Pipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.GUI">
+      <HintPath>libs\StudioForge\StudioForge.Engine.GUI.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Integration">
+      <HintPath>libs\StudioForge\StudioForge.Engine.Integration.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Net">
+      <HintPath>libs\StudioForge\StudioForge.Engine.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Renderers">
+      <HintPath>libs\StudioForge\StudioForge.Engine.Renderers.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Services">
+      <HintPath>libs\StudioForge\StudioForge.Engine.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.TotalMiner.API">
+      <HintPath>libs\StudioForge\StudioForge.TotalMiner.API.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -133,6 +171,7 @@
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="FileSystem.cs" />
+    <Compile Include="GameEngine.cs" />
     <Compile Include="Github\Asset.cs" />
     <Compile Include="Github\Author.cs" />
     <Compile Include="Globals2.cs" />
@@ -158,6 +197,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Github\Release.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SaveGameFileInfo.cs" />
     <Compile Include="SaveMapHead.cs" />
     <Compile Include="Scraper.cs" />
@@ -178,14 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -202,6 +241,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="gai_sv1_icon.ico" />
+    <None Include="Resources\ReloadOrange.png" />
+    <None Include="Resources\DownloadOrange.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\flat border rounded.png" />
     <None Include="Resources\mods.png" />
     <None Include="Resources\world.png" />
     <None Include="Resources\comp.png" />
