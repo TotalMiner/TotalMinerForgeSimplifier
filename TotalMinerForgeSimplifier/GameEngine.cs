@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using StudioForge.TotalMiner;
 using Microsoft.Xna;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +16,8 @@ namespace TMF_Simplifier
     {
         IntPtr drawSurface;
         GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+
         public GameEngine(IntPtr drawSurface)
         {
             graphics = new GraphicsDeviceManager(this);
@@ -26,7 +29,39 @@ namespace TMF_Simplifier
             new EventHandler(Game_VisibleChanged);
         }
 
-              /// <summary>
+        protected override void Initialize()
+        {
+            // TODO: Add your initialization logic here
+
+            base.Initialize();
+        }
+
+        protected override void LoadContent()
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            // TODO: use this.Content to load your game content here
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+
+            // TODO: Add your update logic here
+
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            // TODO: Add your drawing code here
+
+            base.Draw(gameTime);
+        }
+
+        /// <summary>
         /// Event capturing the construction of a draw surface and makes sure this gets redirected to
         /// a predesignated drawsurface marked by pointer drawSurface
         /// </summary>

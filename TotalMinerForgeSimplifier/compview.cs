@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,11 +21,10 @@ namespace TMF_Simplifier
 {
     public partial class compview : Form
     {
-        GameEngine game;
+        
         public compview()
         {
             InitializeComponent();
-            game = new GameEngine(this.getDrawSurface());
         }
         
 

@@ -22,6 +22,7 @@ using System.Diagnostics;
 using CefSharp;
 using StudioForge.TotalMiner.API;
 using StudioForge.TotalMiner;
+using System.Threading;
 #endregion
 
 namespace TMF_Simplifier
@@ -274,9 +275,16 @@ namespace TMF_Simplifier
                 }
                 else if (Category == Categories.com)
                 {
-                    compview comv = new compview();
-                    comv.Show();
-                    comv.LoadComps($"{ExtractLocation}\\{ItemView.SelectedItems[0].Text.Substring(ItemView.SelectedItems[0].Text.Length - 7).Replace(")", "")}");
+
+                    Thread thread = new Thread(() =>
+                    {
+                        compview comv = new compview();
+                        GameEngine game = new GameEngine(comv.getDrawSurface());
+                        comv.Show();
+                        game.Run();
+                        comv.LoadComps($"{ExtractLocation}\\{ItemView.SelectedItems[0].Text.Substring(ItemView.SelectedItems[0].Text.Length - 7).Replace(")", "")}");
+                    });
+                    thread.Start();
                 }
             }
         }

@@ -65,9 +65,9 @@ namespace TMF_Simplifier
             // renderBox
             // 
             this.renderBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.renderBox.Location = new System.Drawing.Point(12, 148);
+            this.renderBox.Location = new System.Drawing.Point(12, 12);
             this.renderBox.Name = "renderBox";
-            this.renderBox.Size = new System.Drawing.Size(290, 290);
+            this.renderBox.Size = new System.Drawing.Size(290, 426);
             this.renderBox.TabIndex = 1;
             this.renderBox.TabStop = false;
             // 
