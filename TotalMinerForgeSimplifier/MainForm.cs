@@ -23,6 +23,7 @@ using CefSharp;
 using StudioForge.TotalMiner.API;
 using StudioForge.TotalMiner;
 using System.Threading;
+using TMF_Simplifier.GameEngine;
 #endregion
 
 namespace TMF_Simplifier
@@ -281,7 +282,7 @@ namespace TMF_Simplifier
                     Thread thread = new Thread(() =>
                     {
                         compview comv = new compview();
-                        GameEngine game = new GameEngine(comv.getDrawSurface());
+                        Game1 game = new Game1(comv.getDrawSurface());
                         comv.Show();
                         comv.LoadComps(File.ReadAllText("temp/comploc.temp"));
                         game.Run();

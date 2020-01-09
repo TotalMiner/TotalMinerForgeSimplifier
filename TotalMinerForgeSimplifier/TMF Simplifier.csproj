@@ -91,11 +91,7 @@
       <HintPath>packages\HtmlAgilityPack.1.4.9.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="MonoGame.Framework, Version=3.8.0.970, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.11.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -120,23 +116,11 @@
     <Reference Include="StudioForge.Engine.Game">
       <HintPath>libs\StudioForge\StudioForge.Engine.Game.dll</HintPath>
     </Reference>
-    <Reference Include="StudioForge.Engine.GamerServices">
-      <HintPath>libs\StudioForge\StudioForge.Engine.GamerServices.dll</HintPath>
-    </Reference>
-    <Reference Include="StudioForge.Engine.Graphics3D">
-      <HintPath>libs\StudioForge\StudioForge.Engine.Graphics3D.dll</HintPath>
-    </Reference>
-    <Reference Include="StudioForge.Engine.Graphics3D_Pipeline">
-      <HintPath>libs\StudioForge\StudioForge.Engine.Graphics3D_Pipeline.dll</HintPath>
-    </Reference>
     <Reference Include="StudioForge.Engine.GUI">
       <HintPath>libs\StudioForge\StudioForge.Engine.GUI.dll</HintPath>
     </Reference>
     <Reference Include="StudioForge.Engine.Integration">
       <HintPath>libs\StudioForge\StudioForge.Engine.Integration.dll</HintPath>
-    </Reference>
-    <Reference Include="StudioForge.Engine.Net">
-      <HintPath>libs\StudioForge\StudioForge.Engine.Net.dll</HintPath>
     </Reference>
     <Reference Include="StudioForge.Engine.Renderers">
       <HintPath>libs\StudioForge\StudioForge.Engine.Renderers.dll</HintPath>
@@ -171,7 +155,6 @@
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="FileSystem.cs" />
-    <Compile Include="GameEngine.cs" />
     <Compile Include="Github\Asset.cs" />
     <Compile Include="Github\Author.cs" />
     <Compile Include="Globals2.cs" />
@@ -260,6 +243,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameEngine\GameEngine.csproj">
+      <Project>{210a95ac-6f33-46ab-a94a-1f2b64fd62e1}</Project>
+      <Name>GameEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\7z.Libs.16.4.0\build\net\7z.Libs.targets" Condition="Exists('packages\7z.Libs.16.4.0\build\net\7z.Libs.targets')" />
