@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using StudioForge.TotalMiner;
 using Microsoft.Xna;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -46,8 +45,7 @@ namespace TMF_Simplifier
 
         protected override void Update(GameTime gameTime)
         {
-
-            // TODO: Add your update logic here
+            
 
             base.Update(gameTime);
         }
@@ -56,7 +54,7 @@ namespace TMF_Simplifier
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            
 
             base.Draw(gameTime);
         }

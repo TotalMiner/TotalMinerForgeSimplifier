@@ -46,6 +46,13 @@ namespace TMF_Simplifier
                 }
 
             }
+
+            compName.Text = listView.Items[0].Text;
+        }
+
+        private void listView_DoubleClick(object sender, EventArgs e)
+        {
+            compName.Text = listView.SelectedItems[0].Text;
         }
     }
 }

@@ -271,18 +271,20 @@ namespace TMF_Simplifier
                 {
                     string ItemSelected = Path.Combine(ExtractLocation, ItemView.SelectedItems[0].SubItems[0].Text.Replace("\n", ""));
                     LocationTextbox.Text = ItemSelected;
-                    LocationLabel.Text = "Intalled item:";
+                    LocationLabel.Text = "Installed item:";
                 }
                 else if (Category == Categories.com)
                 {
-
+                    string compLocation = $"{ExtractLocation}\\{ItemView.SelectedItems[0].Text.Substring(ItemView.SelectedItems[0].Text.Length - 7).Replace(")", "")}";
+                    Directory.CreateDirectory("temp");
+                    File.WriteAllText("temp/comploc.temp", compLocation);
                     Thread thread = new Thread(() =>
                     {
                         compview comv = new compview();
                         GameEngine game = new GameEngine(comv.getDrawSurface());
                         comv.Show();
+                        comv.LoadComps(File.ReadAllText("temp/comploc.temp"));
                         game.Run();
-                        comv.LoadComps($"{ExtractLocation}\\{ItemView.SelectedItems[0].Text.Substring(ItemView.SelectedItems[0].Text.Length - 7).Replace(")", "")}");
                     });
                     thread.Start();
                 }
