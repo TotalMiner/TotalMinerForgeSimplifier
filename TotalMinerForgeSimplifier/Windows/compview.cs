@@ -54,5 +54,9 @@ namespace TMF_Simplifier
         {
             compName.Text = listView.SelectedItems[0].Text;
         }
+
+        private void compview_FormClosed(object sender, FormClosedEventArgs e)
+        {
+        }
     }
 }

@@ -147,34 +147,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="compview.cs">
+    <Compile Include="Windows\compview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="compview.Designer.cs">
+    <Compile Include="Windows\compview.Designer.cs">
       <DependentUpon>compview.cs</DependentUpon>
     </Compile>
-    <Compile Include="Constants.cs" />
-    <Compile Include="FileSystem.cs" />
+    <Compile Include="Services\Constants.cs" />
+    <Compile Include="Services\FileSystem.cs" />
+    <Compile Include="Windows\ForumsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ForumsView.Designer.cs">
+      <DependentUpon>ForumsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Github\Asset.cs" />
     <Compile Include="Github\Author.cs" />
-    <Compile Include="Globals2.cs" />
-    <Compile Include="HelpPage.cs">
+    <Compile Include="Services\Globals2.cs" />
+    <Compile Include="Windows\HelpPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HelpPage.Designer.cs">
+    <Compile Include="Windows\HelpPage.Designer.cs">
       <DependentUpon>HelpPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Windows\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Windows\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapType.cs" />
-    <Compile Include="MapView.cs">
+    <Compile Include="Services\MapType.cs" />
+    <Compile Include="Windows\MapView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MapView.Designer.cs">
+    <Compile Include="Windows\MapView.Designer.cs">
       <DependentUpon>MapView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -185,22 +191,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SaveGameFileInfo.cs" />
-    <Compile Include="SaveMapHead.cs" />
-    <Compile Include="Scraper.cs" />
+    <Compile Include="Services\SaveGameFileInfo.cs" />
+    <Compile Include="Services\SaveMapHead.cs" />
+    <Compile Include="Services\Scraper.cs" />
     <Compile Include="Github\Uploader.cs" />
-    <Compile Include="Style.cs" />
-    <Compile Include="Updater.cs" />
-    <EmbeddedResource Include="compview.resx">
+    <Compile Include="Services\Style.cs" />
+    <Compile Include="Services\Updater.cs" />
+    <EmbeddedResource Include="Windows\compview.resx">
       <DependentUpon>compview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HelpPage.resx">
+    <EmbeddedResource Include="Windows\ForumsView.resx">
+      <DependentUpon>ForumsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\HelpPage.resx">
       <DependentUpon>HelpPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Windows\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapView.resx">
+    <EmbeddedResource Include="Windows\MapView.resx">
       <DependentUpon>MapView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -224,6 +233,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="gai_sv1_icon.ico" />
+    <Content Include="html-resources\html\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="html-resources\html\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\ReloadOrange.png" />
     <None Include="Resources\DownloadOrange.png" />
     <None Include="Resources\download.png" />

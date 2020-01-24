@@ -49,6 +49,39 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="StudioForge.BlockWorld">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.BlockWorld.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Core">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Game">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.GamerServices">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.GamerServices.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Graphics3D">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.Graphics3D.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Graphics3D_Pipeline">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.Graphics3D_Pipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.GUI">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.GUI.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Integration">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.Integration.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Renderers">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.Renderers.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.Engine.Services">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.Engine.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="StudioForge.TotalMiner.API">
+      <HintPath>..\TotalMinerForgeSimplifier\libs\StudioForge\StudioForge.TotalMiner.API.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />

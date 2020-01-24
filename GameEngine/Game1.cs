@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using StudioForge.Engine.GUI;
 using System;
 
 namespace TMF_Simplifier.GameEngine
@@ -15,11 +16,20 @@ namespace TMF_Simplifier.GameEngine
         SpriteBatch spriteBatch;
         Texture2D rectTexture;
 
+        Matrix world = Matrix.CreateTranslation(new Vector3(0, 0, 0));
+        Matrix view = Matrix.CreateLookAt(new Vector3(0, 0, 10), new Vector3(0, 0, 0), Vector3.UnitY);
+        Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 100f);
+        
+        private Vector3 modelYPR;
+        private bool dragStart;
+        private Point dragAvatarMouseStartPos;
+
         public Game1(IntPtr drawSurface)
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
+            graphics.PreferredBackBufferHeight = 426;
+            graphics.PreferredBackBufferWidth = 426;
             this.drawSurface = drawSurface;
             graphics.PreparingDeviceSettings +=
             new EventHandler<PreparingDeviceSettingsEventArgs>(graphics_PreparingDeviceSettings);
@@ -36,7 +46,6 @@ namespace TMF_Simplifier.GameEngine
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -86,14 +95,32 @@ namespace TMF_Simplifier.GameEngine
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
             spriteBatch.Begin();
-            spriteBatch.Draw(rectTexture, new Vector2(10, 10), Color.White);
-
+            
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }
 
+        private void DragAvatar(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (!dragStart)
+            {
+                dragAvatarMouseStartPos = new Point(e.X, e.Y);
+                dragStart = true;
+            }
+            else
+            {
+                modelYPR.X += (float)(e.X - dragAvatarMouseStartPos.X) * 0.01f;
+                dragAvatarMouseStartPos = new Point(e.X, e.Y);
+                //winModel.SetYPR(modelYPR);
+            }
+        }
+
+        private void DragEndAvatar(object sender, WindowEventArgs e)
+        {
+            dragStart = false;
+        }
 
         /// <summary>
         /// Event capturing the construction of a draw surface and makes sure this gets redirected to

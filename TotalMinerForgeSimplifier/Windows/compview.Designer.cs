@@ -47,9 +47,9 @@ namespace TMF_Simplifier
             this.comname,
             this.comfile});
             this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(315, 12);
+            this.listView.Location = new System.Drawing.Point(12, 48);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(473, 426);
+            this.listView.Size = new System.Drawing.Size(344, 390);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -58,19 +58,19 @@ namespace TMF_Simplifier
             // comname
             // 
             this.comname.Text = "Name";
-            this.comname.Width = 314;
+            this.comname.Width = 124;
             // 
             // comfile
             // 
             this.comfile.Text = "File";
-            this.comfile.Width = 157;
+            this.comfile.Width = 167;
             // 
             // renderBox
             // 
             this.renderBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.renderBox.Location = new System.Drawing.Point(12, 52);
+            this.renderBox.Location = new System.Drawing.Point(362, 12);
             this.renderBox.Name = "renderBox";
-            this.renderBox.Size = new System.Drawing.Size(290, 386);
+            this.renderBox.Size = new System.Drawing.Size(426, 426);
             this.renderBox.TabIndex = 1;
             this.renderBox.TabStop = false;
             // 
@@ -82,10 +82,10 @@ namespace TMF_Simplifier
             this.compName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.compName.Location = new System.Drawing.Point(12, 12);
             this.compName.Margin = new System.Windows.Forms.Padding(6);
-            this.compName.MaximumSize = new System.Drawing.Size(207, 27);
-            this.compName.MinimumSize = new System.Drawing.Size(207, 27);
+            this.compName.MaximumSize = new System.Drawing.Size(258, 27);
+            this.compName.MinimumSize = new System.Drawing.Size(258, 27);
             this.compName.Name = "compName";
-            this.compName.Size = new System.Drawing.Size(207, 27);
+            this.compName.Size = new System.Drawing.Size(258, 27);
             this.compName.TabIndex = 2;
             this.compName.Text = "Example";
             // 
@@ -95,7 +95,7 @@ namespace TMF_Simplifier
             this.renameBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.renameBTN.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.renameBTN.ForeColor = System.Drawing.Color.White;
-            this.renameBTN.Location = new System.Drawing.Point(225, 12);
+            this.renameBTN.Location = new System.Drawing.Point(279, 12);
             this.renameBTN.Name = "renameBTN";
             this.renameBTN.Padding = new System.Windows.Forms.Padding(4);
             this.renameBTN.Size = new System.Drawing.Size(77, 27);
@@ -115,6 +115,7 @@ namespace TMF_Simplifier
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "compview";
             this.Text = "Component Viewer";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.compview_FormClosed);
             this.Load += new System.EventHandler(this.compview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.renderBox)).EndInit();
             this.ResumeLayout(false);
