@@ -978,16 +978,26 @@ namespace TMF_Simplifier
 
         private void TestLabel_Click(object sender, EventArgs e)
         {
-            StreamWriter sr = new StreamWriter("output/BlockTextures64.xml");
-            sr.Write("<?xml version=\"1.0\"?>\n< ArrayOfItemXML xmlns: xsi = \"http://www.w3.org/2001/XMLSchema-instance\" xmlns: xsd = \"http://www.w3.org/2001/XMLSchema\"> \n");
-            foreach (Item blockItem in Enum.GetValues(typeof(Item)))
+            bool blockoveritem = true;
+            StreamWriter srblock = new StreamWriter("output/BlockTextures64.xml");
+            StreamWriter sritem = new StreamWriter("output/ItemTextures32.xml");
+            srblock.Write("<?xml version=\"1.0\"?>\n<ArrayOfItemXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"> \n");
+            sritem.Write("<?xml version=\"1.0\"?>\n<ArrayOfItemXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"> \n");
+            foreach (Item _item in Enum.GetValues(typeof(Item)))
             {
-                if (blockItem == Item.zLastBlockID)
+                if (_item == Item.zLastBlockID)
+                    blockoveritem = false;
+                else if (blockoveritem)
+                    srblock.WriteLine($"  <ItemXML>\n     <ItemID>{_item}</ItemID>\n  </ItemXML> ");
+                else if (_item != Item.zLastItemID && !blockoveritem)
+                    sritem.WriteLine($"  <ItemXML>\n     <ItemID>{_item}</ItemID>\n  </ItemXML> ");
+                else
                     break;
-               sr.WriteLine($"  <ItemXML>\n     <ItemID>{blockItem}</ItemID>\n  </ItemXML> ");
             }
-            sr.WriteLine("</ArrayOfItemXML>");
-            sr.Close();
+            srblock.WriteLine("</ArrayOfItemXML>");
+            srblock.Close();
+            sritem.WriteLine("</ArrayOfItemXML>");
+            sritem.Close();
         }
     }
 }
