@@ -1,6 +1,6 @@
 
 # Status
-TMFS is under constant support, patching bugs and adding features. We will be accepting pull requests if I, Hayden, or Justyn, believe it is worthy
+TMFS is no longer maintained by Hayden or Justyn. Feel free to fork and continue development on your own. Development may resume in the future, but this is undetermined.
 
 # Total Miner Forge Simplifier 
 ![TMFS Logo](https://github.com/TotalMiner/TotalMinerForgeSimplifier/blob/develop/TotalMinerForgeSimplifier/res/tmfs_icon-1.png "logo") [![GitHub issues](https://img.shields.io/github/issues/TotalMiner/TotalMinerForgeSimplifier)](https://github.com/TotalMiner/TotalMinerForgeSimplifier/issues) [![GitHub stars](https://img.shields.io/github/stars/TotalMiner/TotalMinerForgeSimplifier)](https://github.com/TotalMiner/TotalMinerForgeSimplifier/stargazers) [![GitHub license](https://img.shields.io/github/license/TotalMiner/TotalMinerForgeSimplifier)](https://github.com/TotalMiner/TotalMinerForgeSimplifier/blob/develop/LICENSE)
