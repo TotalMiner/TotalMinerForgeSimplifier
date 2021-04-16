@@ -1,3 +1,5 @@
+> ## NOTE:
+> Total Miner forums will be going offline forever on March, 18th 2022, this means the scraper will be losing support. The local unzipping feature will however still work.
 
 # Status
 TMFS is no longer maintained by Hayden or Justyn. Feel free to fork and continue development on your own. Development may resume in the future, but this is undetermined.
