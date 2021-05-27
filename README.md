@@ -2,7 +2,7 @@
 > Total Miner forums will be going offline forever on March, 18th 2022, this means the scraper will be losing support. The local unzipping feature will however still work.
 
 # Status
-TMFS is no longer maintained by Hayden or Justyn. Feel free to fork and continue development on your own. Development may resume in the future, but this is undetermined.
+TMFS is back in development, preparing for the new multiplayer release.
 
 # Total Miner Forge Simplifier 
 ![TMFS Logo](https://github.com/TotalMiner/TotalMinerForgeSimplifier/blob/develop/TotalMinerForgeSimplifier/res/tmfs_icon-1.png "logo") [![GitHub issues](https://img.shields.io/github/issues/TotalMiner/TotalMinerForgeSimplifier)](https://github.com/TotalMiner/TotalMinerForgeSimplifier/issues) [![GitHub stars](https://img.shields.io/github/stars/TotalMiner/TotalMinerForgeSimplifier)](https://github.com/TotalMiner/TotalMinerForgeSimplifier/stargazers) [![GitHub license](https://img.shields.io/github/license/TotalMiner/TotalMinerForgeSimplifier)](https://github.com/TotalMiner/TotalMinerForgeSimplifier/blob/develop/LICENSE)
